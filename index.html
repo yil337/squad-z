@@ -7,406 +7,497 @@
 <meta name="description" content="Official support and privacy information for Squad Z (Hi Zombie), a pixel-art zombie survival runner for iOS by Yidong Li.">
 <style>
   :root {
-    --ink:        #1a1f1a;
-    --ink-soft:   #4a4f4a;
-    --ink-mute:   #8a8f8a;
-    --paper:      #f6f4ed;
-    --rule:       #d8d4c8;
-    --accent:     #6b3a2a;
-    --accent-soft:rgba(107, 58, 42, 0.08);
-    --card:       #ffffff;
-    --code-bg:    #eae6d8;
-    --font-sans:  -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
-                  'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
-    --font-mono:  'SF Mono', 'Monaco', 'Menlo', 'Consolas', monospace;
+    --bg:        #fbfbfd;
+    --paper:     #ffffff;
+    --ink:       #1d1d1f;
+    --ink-soft:  #515154;
+    --ink-mute:  #86868b;
+    --rule:      #d2d2d7;
+    --rule-soft: #e8e8ed;
+    --accent:    #0066cc;
+    --accent-hover: #0a84ff;
+    --font-en:   -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
+                 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-zh:   -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
+                 'Microsoft YaHei', sans-serif;
   }
 
   * { box-sizing: border-box; }
-  html { font-size: 16px; scroll-behavior: smooth; }
+  html { font-size: 17px; scroll-behavior: smooth; }
   body {
     margin: 0;
-    background: var(--paper);
+    background: var(--bg);
     color: var(--ink);
-    font-family: var(--font-sans);
-    line-height: 1.65;
+    font-family: var(--font-en);
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
+  body.lang-zh { font-family: var(--font-zh); }
 
+  /* Language visibility */
+  body.lang-en .lang-zh { display: none; }
+  body.lang-zh .lang-en { display: none; }
+
+  /* ─── Top language toggle ─── */
+  .lang-toggle {
+    position: fixed;
+    top: 22px;
+    right: 22px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.72);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 980px;
+    padding: 3px;
+    display: flex;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  }
+  .lang-toggle button {
+    background: transparent;
+    border: none;
+    color: var(--ink-soft);
+    padding: 6px 16px;
+    border-radius: 980px;
+    cursor: pointer;
+    font: 500 13px/1 var(--font-en);
+    transition: all 0.18s ease;
+  }
+  .lang-toggle button:hover { color: var(--ink); }
+  .lang-toggle button.active {
+    background: var(--ink);
+    color: white;
+  }
+  .lang-toggle button[data-lang="zh"] { font-family: var(--font-zh); }
+
+  /* ─── Container ─── */
   .container {
     max-width: 720px;
     margin: 0 auto;
-    padding: 56px 24px 96px;
+    padding: 96px 32px 120px;
   }
 
   /* ─── Header ─── */
   header {
     text-align: center;
-    padding-bottom: 32px;
-    border-bottom: 2px solid var(--ink);
-    margin-bottom: 32px;
+    margin-bottom: 72px;
   }
   h1 {
-    font-size: 2.6rem;
-    font-weight: 800;
-    letter-spacing: 0.04em;
-    margin: 0 0 8px;
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin: 0 0 12px;
+    line-height: 1.08;
     color: var(--ink);
   }
   header .tagline {
-    font-size: 0.95rem;
-    color: var(--ink-soft);
-    margin: 4px 0;
-    letter-spacing: 0.06em;
-  }
-  header .listed-as {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
+    font-size: 21px;
+    font-weight: 400;
     color: var(--ink-mute);
-    margin: 14px 0 0;
-    letter-spacing: 0.04em;
+    margin: 0;
+    letter-spacing: -0.003em;
   }
-  header .listed-as em { font-style: normal; color: var(--accent); }
-
-  /* ─── Quick nav ─── */
-  nav.quick-nav {
-    display: flex;
-    justify-content: center;
-    gap: 28px;
-    margin-bottom: 48px;
-    flex-wrap: wrap;
-    font-size: 0.92rem;
+  header .listed {
+    font-size: 13px;
+    color: var(--ink-mute);
+    margin: 16px 0 0;
+    letter-spacing: 0;
   }
-  nav.quick-nav a {
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 2px;
-    transition: border-color 0.15s;
+  header .listed em {
+    font-style: normal;
+    color: var(--ink-soft);
+    font-weight: 500;
   }
-  nav.quick-nav a:hover { border-bottom-color: var(--accent); }
 
   /* ─── Section ─── */
   section {
-    padding: 36px 0;
-    border-top: 1px solid var(--rule);
+    margin-top: 88px;
   }
-  section:first-of-type { border-top: none; padding-top: 0; }
+  section:first-of-type { margin-top: 0; }
 
   h2 {
-    font-size: 1.65rem;
-    font-weight: 700;
-    margin: 0 0 18px;
-    color: var(--ink);
-  }
-  h2 .zh {
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: var(--ink-soft);
-    margin-left: 12px;
-    letter-spacing: 0.02em;
-  }
-  h3 {
-    font-size: 1.08rem;
+    font-size: 32px;
     font-weight: 600;
-    margin: 28px 0 8px;
+    letter-spacing: -0.018em;
+    margin: 0 0 28px;
     color: var(--ink);
   }
-  h3 .zh {
-    font-weight: 500;
-    color: var(--ink-soft);
-    margin-left: 8px;
-    font-size: 0.95rem;
+
+  h3 {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.003em;
+    margin: 36px 0 10px;
+    color: var(--ink);
   }
-  p { margin: 0 0 12px; color: var(--ink-soft); }
-  .zh-para {
+
+  p {
+    font-size: 17px;
     color: var(--ink-soft);
-    font-size: 0.92em;
-    padding-left: 14px;
-    border-left: 2px solid var(--rule);
-    margin: -4px 0 14px;
+    margin: 0 0 16px;
+    line-height: 1.62;
+    letter-spacing: -0.003em;
   }
+  body.lang-zh p,
+  body.lang-zh details summary,
+  body.lang-zh h1,
+  body.lang-zh h2,
+  body.lang-zh h3 {
+    letter-spacing: 0;
+  }
+
+  strong { color: var(--ink); font-weight: 600; }
+  em { font-style: italic; }
+
   a {
     color: var(--accent);
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 3px;
+    text-decoration: none;
+    transition: color 0.15s;
   }
-  a:hover { text-decoration-thickness: 2px; }
-  strong { color: var(--ink); }
+  a:hover { color: var(--accent-hover); text-decoration: underline; text-underline-offset: 3px; }
 
-  /* ─── Contact card ─── */
+  /* ─── Contact card (Apple-style) ─── */
   .contact-card {
-    background: var(--accent-soft);
-    border-left: 3px solid var(--accent);
-    padding: 18px 22px;
-    margin: 16px 0 24px;
-    border-radius: 0 5px 5px 0;
+    background: var(--paper);
+    border: 1px solid var(--rule-soft);
+    border-radius: 18px;
+    padding: 28px 32px;
+    margin: 28px 0 40px;
   }
   .contact-card .label {
-    font-size: 0.78rem;
+    font-size: 12px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--ink-soft);
+    letter-spacing: 0.05em;
+    color: var(--ink-mute);
+    font-weight: 500;
     margin-bottom: 4px;
   }
   .contact-card .email {
-    font-family: var(--font-mono);
-    font-size: 1.08rem;
-    font-weight: 600;
+    font-size: 22px;
+    font-weight: 500;
     display: block;
     color: var(--accent);
+    letter-spacing: -0.005em;
+    margin-bottom: 14px;
   }
+  .contact-card .email:hover { color: var(--accent-hover); }
   .contact-card .note {
-    margin: 10px 0 0;
-    font-size: 0.88rem;
-    color: var(--ink-soft);
+    margin: 0;
+    font-size: 15px;
+    color: var(--ink-mute);
     line-height: 1.55;
   }
-  .contact-card .note .zh {
-    display: block;
-    color: var(--ink-mute);
-    margin-top: 4px;
-  }
 
-  /* ─── FAQ ─── */
+  /* ─── FAQ — Apple Support style ─── */
   details {
-    border: 1px solid var(--rule);
-    border-radius: 5px;
-    margin-bottom: 8px;
-    background: var(--card);
-    transition: border-color 0.15s;
+    border-top: 1px solid var(--rule);
+    padding: 22px 0;
   }
-  details[open] { border-color: var(--accent); }
+  details:last-of-type {
+    border-bottom: 1px solid var(--rule);
+  }
   details summary {
-    padding: 14px 18px;
     cursor: pointer;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 500;
     color: var(--ink);
     list-style: none;
     display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 0.96rem;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    letter-spacing: -0.003em;
+    line-height: 1.4;
   }
   details summary::-webkit-details-marker { display: none; }
-  details summary::before {
-    content: "+";
-    color: var(--accent);
-    font-weight: 700;
-    font-size: 1.1rem;
-    width: 14px;
-    display: inline-block;
+  details summary::after {
+    content: "";
     flex-shrink: 0;
+    width: 12px;
+    height: 12px;
+    margin-top: 6px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path fill='none' stroke='%2386868b' stroke-width='1.6' stroke-linecap='round' d='M1 4l5 5 5-5'/></svg>");
+    background-repeat: no-repeat;
+    background-size: contain;
+    transition: transform 0.25s ease;
   }
-  details[open] summary::before { content: "−"; }
-  details summary:hover { background: var(--accent-soft); border-radius: 5px 5px 0 0; }
-  details > p,
-  details > div {
-    padding: 0 18px 16px 44px;
-    margin: 0;
+  details[open] summary::after {
+    transform: rotate(180deg);
+  }
+  details summary:hover { color: var(--accent); }
+  details > p {
+    margin: 14px 0 0;
     color: var(--ink-soft);
-    font-size: 0.93rem;
+    font-size: 16px;
+    line-height: 1.62;
+    padding-right: 36px;
   }
-  details > p + p { margin-top: 10px; }
-  details p.zh {
-    color: var(--ink-mute);
-    border-left: 2px solid var(--rule);
-    padding-left: 12px;
-    margin-left: -2px;
-    font-size: 0.88rem;
-  }
+  details > p:last-child { margin-bottom: 0; }
 
   /* ─── Footer ─── */
   footer {
     text-align: center;
-    padding-top: 56px;
-    margin-top: 32px;
-    border-top: 1px solid var(--rule);
+    margin-top: 120px;
+    padding-top: 36px;
+    border-top: 1px solid var(--rule-soft);
     color: var(--ink-mute);
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
-    letter-spacing: 0.06em;
+    font-size: 12px;
+    letter-spacing: 0;
   }
-  footer .last-updated {
-    display: block;
-    margin-top: 6px;
-    font-size: 0.78rem;
+  footer .stack {
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--ink-mute);
+    opacity: 0.7;
   }
 
-  /* ─── Mobile ─── */
-  @media (max-width: 600px) {
-    .container { padding: 36px 18px 72px; }
-    h1 { font-size: 2.1rem; }
-    h2 { font-size: 1.4rem; }
-    h2 .zh { display: block; margin-left: 0; font-size: 0.92rem; margin-top: 2px; }
-    h3 .zh { display: block; margin-left: 0; font-size: 0.88rem; margin-top: 2px; }
-    nav.quick-nav { gap: 18px; }
-    details summary { font-size: 0.92rem; }
-    details > p, details > div { padding: 0 16px 14px 38px; }
+  /* ─── Responsive ─── */
+  @media (max-width: 640px) {
+    .container { padding: 72px 22px 80px; }
+    h1 { font-size: 40px; }
+    header .tagline { font-size: 18px; }
+    h2 { font-size: 26px; margin-bottom: 20px; }
+    h3 { font-size: 18px; }
+    p { font-size: 16px; }
+    section { margin-top: 64px; }
+    details summary { font-size: 16px; }
+    details > p { font-size: 15px; padding-right: 24px; }
+    .contact-card { padding: 22px 24px; border-radius: 14px; }
+    .contact-card .email { font-size: 19px; }
+    .lang-toggle { top: 16px; right: 16px; }
+    .lang-toggle button { padding: 5px 13px; font-size: 12px; }
   }
 </style>
 </head>
-<body>
+<body class="lang-en">
+
+<div class="lang-toggle" role="group" aria-label="Language selector">
+  <button type="button" data-lang="en" class="active" aria-label="English">EN</button>
+  <button type="button" data-lang="zh" aria-label="简体中文">中文</button>
+</div>
+
 <div class="container">
 
 <header>
   <h1>Squad Z</h1>
-  <p class="tagline">Pixel Zombie Roguelike · Co-op</p>
-  <p class="listed-as">Listed on the App Store as <em>Hi Zombie</em></p>
+  <p class="tagline lang-en">Pixel Zombie Roguelike · Co-op</p>
+  <p class="tagline lang-zh">像素僵尸肉鸽跑酷 · 本地双人联机</p>
+  <p class="listed lang-en">Listed on the App Store as <em>Hi Zombie</em></p>
+  <p class="listed lang-zh">在 App Store 名称为 <em>Hi Zombie</em></p>
 </header>
-
-<nav class="quick-nav">
-  <a href="#support">Support</a>
-  <a href="#privacy">Privacy Policy</a>
-  <a href="#about">About</a>
-</nav>
 
 <!-- ═══════════════ SUPPORT ═══════════════ -->
 <section id="support">
-  <h2>Support <span class="zh">玩家支持</span></h2>
+  <h2 class="lang-en">Support</h2>
+  <h2 class="lang-zh">玩家支持</h2>
 
-  <p>This is the official support page for Squad Z (Hi Zombie). For any issues, bugs, or feedback, please reach out via email below.</p>
-  <p class="zh-para">本页是 Squad Z (Hi Zombie) 的官方支持页面。如有任何问题、bug 或反馈,请通过下方邮箱联系。</p>
+  <p class="lang-en">For any issues, bugs, or feedback, please reach out via email below.</p>
+  <p class="lang-zh">如有任何问题、bug 或反馈，请通过下方邮箱联系。</p>
 
-  <h3>Contact <span class="zh">联系方式</span></h3>
   <div class="contact-card">
-    <div class="label">Email / 邮箱</div>
+    <div class="label">
+      <span class="lang-en">Email</span>
+      <span class="lang-zh">邮箱</span>
+    </div>
     <a class="email" href="mailto:yidong289@gmail.com">yidong289@gmail.com</a>
-    <p class="note">
-      Typical response within 1–3 days. When reporting an issue, please include your device model, iOS version, and a brief description.
-      <span class="zh">通常 1–3 天内回复。报告问题时,请说明设备型号、iOS 版本和遇到的现象。</span>
-    </p>
+    <p class="note lang-en">Typical response within 1–3 days. When reporting an issue, please include your device model, iOS version, and a brief description of what happened.</p>
+    <p class="note lang-zh">通常 1–3 天内回复。报告问题时，请说明设备型号、iOS 版本和遇到的现象。</p>
   </div>
 
-  <h3>FAQ <span class="zh">常见问题</span></h3>
+  <h3 class="lang-en">Frequently asked questions</h3>
+  <h3 class="lang-zh">常见问题</h3>
 
   <details>
-    <summary>How do I start local 2-player co-op? / 如何开始本地双人联机?</summary>
-    <p>Both players need iPhones (or iPads) on the same Wi-Fi network — Bluetooth also works. From the Main Menu, tap <strong>2P</strong>. One device hosts, the other joins. Both must allow "Local Network" permission when iOS prompts.</p>
-    <p class="zh">两台 iPhone (或 iPad) 在同一 Wi-Fi 下即可 — 蓝牙也行。主菜单点 <strong>2P</strong>,一台主机一台加入。两台都要在 iOS 询问时允许"本地网络"权限。</p>
+    <summary>
+      <span class="lang-en">How do I start local 2-player co-op?</span>
+      <span class="lang-zh">如何开始本地双人联机？</span>
+    </summary>
+    <p class="lang-en">Both players need iPhones or iPads on the same Wi-Fi network — Bluetooth also works. From the Main Menu, tap <strong>2P</strong>. One device hosts, the other joins. Both must allow "Local Network" permission when iOS prompts.</p>
+    <p class="lang-zh">两台 iPhone 或 iPad 在同一 Wi-Fi 下即可，蓝牙也行。主菜单点 <strong>2P</strong>，一台主机一台加入。两台都要在 iOS 询问时允许"本地网络"权限。</p>
   </details>
 
   <details>
-    <summary>I bought a tip in the Tip Jar but didn't see the hearts. / 我打赏后没看到爱心?</summary>
-    <p>Open <strong>Community → Wall of Survivors</strong>; hearts should appear once the App Store finalizes the purchase. If they don't show within a few minutes, restart the app. If still missing, email us with your purchase receipt and we'll investigate.</p>
-    <p class="zh">打开 <strong>Community → Wall of Survivors</strong>,购买完成后爱心会显示。如果几分钟内仍未出现,请重启游戏。仍有问题请把购买收据发邮件给我们查询。</p>
+    <summary>
+      <span class="lang-en">I bought a tip in the Tip Jar but didn't see the hearts.</span>
+      <span class="lang-zh">我打赏后没看到爱心。</span>
+    </summary>
+    <p class="lang-en">Open <strong>Community → Wall of Survivors</strong>; hearts should appear once the App Store finalizes the purchase. If they don't show within a few minutes, restart the app. If still missing, email us with your purchase receipt and we'll investigate.</p>
+    <p class="lang-zh">打开 <strong>Community → Wall of Survivors</strong>，购买完成后爱心会显示。如果几分钟内仍未出现，请重启游戏。仍有问题请把购买收据发邮件给我们查询。</p>
   </details>
 
   <details>
-    <summary>The leaderboard isn't loading. / 排行榜加载不出来。</summary>
-    <p>The leaderboard uses Apple Game Center, which requires an internet connection and a signed-in Game Center account. Open <strong>iOS Settings → Game Center</strong> to confirm sign-in. If still failing, try toggling Game Center off/on, then relaunch the app.</p>
-    <p class="zh">排行榜基于 Apple Game Center,需要网络且已登录 Game Center。打开 <strong>iOS 设置 → Game Center</strong> 确认已登录。仍不行可尝试切换 Game Center 后重启游戏。</p>
+    <summary>
+      <span class="lang-en">The leaderboard isn't loading.</span>
+      <span class="lang-zh">排行榜加载不出来。</span>
+    </summary>
+    <p class="lang-en">The leaderboard uses Apple Game Center, which requires an internet connection and a signed-in Game Center account. Open <strong>iOS Settings → Game Center</strong> to confirm sign-in. If still failing, try toggling Game Center off and on, then relaunch the app.</p>
+    <p class="lang-zh">排行榜基于 Apple Game Center，需要网络且已登录 Game Center。打开 <strong>iOS 设置 → Game Center</strong> 确认已登录。仍不行可尝试切换 Game Center 后重启游戏。</p>
   </details>
 
   <details>
-    <summary>I lost my run progress. / 我的进度没了。</summary>
-    <p>Squad Z autosaves the active run when you background the app (e.g., during a call or via the app switcher). When you reopen, "Single Player" lets you resume. Progress is intentionally wiped when you finish a run, restart, or enter a boss arena. Saves are local to the device and not synced across devices.</p>
-    <p class="zh">Squad Z 会在你切后台时自动保存当前进度,重开后点 "Single Player" 可以续局。每局结束、重开、或进入 boss 战时存档会清空 — 这是设计如此。存档仅本机,不跨设备同步。</p>
+    <summary>
+      <span class="lang-en">I lost my run progress.</span>
+      <span class="lang-zh">我的进度没了。</span>
+    </summary>
+    <p class="lang-en">Squad Z autosaves the active run when you background the app (e.g., during a call or via the app switcher). When you reopen, "Single Player" lets you resume. Progress is intentionally wiped when you finish a run, restart, or enter a boss arena. Saves are local to the device and not synced across devices.</p>
+    <p class="lang-zh">Squad Z 会在你切后台时自动保存当前进度，重开后点 "Single Player" 可以续局。每局结束、重开、或进入 boss 战时存档会清空 — 这是设计如此。存档仅本机，不跨设备同步。</p>
   </details>
 
   <details>
-    <summary>Does the game work offline? / 游戏能离线玩吗?</summary>
-    <p>Yes. The full single-player game works offline. Internet is only required for: (1) Game Center leaderboards, (2) Tip Jar purchases, (3) submitting suggestions via <strong>Community → Leave a Message</strong>. Local 2P co-op uses Wi-Fi or Bluetooth between your two devices — no internet needed.</p>
-    <p class="zh">是的。完整单人游戏可离线。需要联网的功能:(1) Game Center 排行榜,(2) Tip Jar 打赏,(3) <strong>Community → Leave a Message</strong> 反馈提交。本地双人联机走 Wi-Fi 或蓝牙直连,不需要外网。</p>
+    <summary>
+      <span class="lang-en">Does the game work offline?</span>
+      <span class="lang-zh">游戏能离线玩吗？</span>
+    </summary>
+    <p class="lang-en">Yes. The full single-player game works offline. Internet is only required for Game Center leaderboards, Tip Jar purchases, and submitting suggestions via Community → Leave a Message. Local 2-player co-op uses Wi-Fi or Bluetooth between your two devices — no internet needed.</p>
+    <p class="lang-zh">是的。完整单人游戏可离线。需要联网的功能：Game Center 排行榜、Tip Jar 打赏、Community → Leave a Message 反馈提交。本地双人联机走 Wi-Fi 或蓝牙直连，不需要外网。</p>
   </details>
 
   <details>
-    <summary>Why does the game ask for "Local Network" permission? / 为什么要"本地网络"权限?</summary>
-    <p>Only for Local 2-Player Co-Op. The game uses Apple's MultipeerConnectivity framework, which discovers nearby devices via Bonjour on the local network. Squad Z does <strong>not</strong> transmit any data outside your local network — no tracking, no analytics, no external servers.</p>
-    <p class="zh">仅本地双人联机需要。游戏使用 Apple 的 MultipeerConnectivity 框架,通过本地 Bonjour 发现附近设备。Squad Z <strong>不向</strong>本地网络外传输任何数据 — 无追踪、无分析、无外部服务器。</p>
+    <summary>
+      <span class="lang-en">Why does the game ask for "Local Network" permission?</span>
+      <span class="lang-zh">为什么要"本地网络"权限？</span>
+    </summary>
+    <p class="lang-en">Only for local 2-player co-op. The game uses Apple's MultipeerConnectivity framework, which discovers nearby devices via Bonjour on the local network. Squad Z does <strong>not</strong> transmit any data outside your local network — no tracking, no analytics, no external servers.</p>
+    <p class="lang-zh">仅本地双人联机需要。游戏使用 Apple 的 MultipeerConnectivity 框架，通过本地 Bonjour 发现附近设备。Squad Z <strong>不向</strong>本地网络外传输任何数据 — 无追踪、无分析、无外部服务器。</p>
   </details>
 
   <details>
-    <summary>How do I report a bug? / 如何报告 bug?</summary>
-    <p>Email <a href="mailto:yidong289@gmail.com">yidong289@gmail.com</a> with:</p>
-    <div>
-      <p>• A brief description of the bug<br>
-         • Your device model (e.g., "iPhone 14 Pro")<br>
-         • Your iOS version (Settings → General → About → iOS Version)<br>
-         • Your game version (Main Menu → Settings → Version)<br>
-         • Screenshots or screen recordings (they help a lot!)</p>
-    </div>
-    <p class="zh">邮件 <a href="mailto:yidong289@gmail.com">yidong289@gmail.com</a>,附上:bug 简述、设备型号 (如 "iPhone 14 Pro")、iOS 版本 (设置 → 通用 → 关于本机)、游戏版本 (主菜单 → 设置 → 版本)。截图或屏幕录像帮助很大。</p>
+    <summary>
+      <span class="lang-en">How do I report a bug?</span>
+      <span class="lang-zh">如何报告 bug？</span>
+    </summary>
+    <p class="lang-en">Email <a href="mailto:yidong289@gmail.com">yidong289@gmail.com</a> with a brief description of the bug, your device model (e.g., "iPhone 14 Pro"), your iOS version (Settings → General → About → iOS Version), and your game version (Main Menu → Settings → Version). Screenshots or screen recordings help a lot.</p>
+    <p class="lang-zh">邮件 <a href="mailto:yidong289@gmail.com">yidong289@gmail.com</a>，附上 bug 简述、设备型号（如 "iPhone 14 Pro"）、iOS 版本（设置 → 通用 → 关于本机）、游戏版本（主菜单 → 设置 → 版本）。截图或屏幕录像帮助很大。</p>
   </details>
 
   <details>
-    <summary>I want a refund. / 我想退款。</summary>
-    <p>Refunds for App Store purchases (including Tip Jar tips) are handled by <strong>Apple</strong>, not by the developer. Visit <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> and sign in with your Apple ID to submit a refund request.</p>
-    <p class="zh">App Store 购买 (包括 Tip Jar 打赏) 的退款由 <strong>Apple</strong> 处理,不通过开发者。访问 <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> 用你的 Apple ID 登录提交退款申请。</p>
+    <summary>
+      <span class="lang-en">I want a refund.</span>
+      <span class="lang-zh">我想退款。</span>
+    </summary>
+    <p class="lang-en">Refunds for App Store purchases — including Tip Jar tips — are handled by <strong>Apple</strong>, not by the developer. Visit <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> and sign in with your Apple ID to submit a refund request.</p>
+    <p class="lang-zh">App Store 购买（包括 Tip Jar 打赏）的退款由 <strong>Apple</strong> 处理，不通过开发者。访问 <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> 用你的 Apple ID 登录提交退款申请。</p>
   </details>
 
   <details>
-    <summary>The game crashes / freezes. / 游戏闪退 / 卡死。</summary>
-    <p>First try: force-quit the app, then relaunch. If the issue persists, restart your device. If still happening, email us with: the moment it crashes (e.g., "during boss fight"), device model, iOS version, and game version. We track all reported crashes and ship fixes in following updates.</p>
-    <p class="zh">先试:强制退出 app 后重开。仍有问题可重启设备。还不行就邮件告诉我们:闪退的场景 (如"打 boss 时")、设备型号、iOS 版本、游戏版本。我们会跟踪所有上报的闪退并在后续更新中修复。</p>
+    <summary>
+      <span class="lang-en">The game crashes or freezes.</span>
+      <span class="lang-zh">游戏闪退 / 卡死。</span>
+    </summary>
+    <p class="lang-en">First try force-quitting the app, then relaunch. If the issue persists, restart your device. If still happening, email us with: the moment it crashes (e.g., "during boss fight"), device model, iOS version, and game version. We track all reported crashes and ship fixes in following updates.</p>
+    <p class="lang-zh">先试强制退出 app 后重开。仍有问题可重启设备。还不行就邮件告诉我们：闪退的场景（如"打 boss 时"）、设备型号、iOS 版本、游戏版本。我们会跟踪所有上报的闪退并在后续更新中修复。</p>
   </details>
 
 </section>
 
 <!-- ═══════════════ PRIVACY ═══════════════ -->
 <section id="privacy">
-  <h2>Privacy Policy <span class="zh">隐私政策</span></h2>
+  <h2 class="lang-en">Privacy Policy</h2>
+  <h2 class="lang-zh">隐私政策</h2>
 
-  <h3>1. What we collect <span class="zh">数据收集</span></h3>
-  <p>Squad Z (Hi Zombie) does <strong>not</strong> collect, store, or transmit any personal information from its users. The app requires no account creation, sign-up, or sign-in to play.</p>
-  <p class="zh-para">Squad Z (Hi Zombie) <strong>不</strong>收集、存储或传输任何用户的个人信息。游玩本游戏无需创建账号、注册或登录。</p>
+  <h3 class="lang-en">What we collect</h3>
+  <h3 class="lang-zh">数据收集</h3>
+  <p class="lang-en">Squad Z (Hi Zombie) does <strong>not</strong> collect, store, or transmit any personal information from its users. The app requires no account creation, sign-up, or sign-in to play.</p>
+  <p class="lang-zh">Squad Z (Hi Zombie) <strong>不</strong>收集、存储或传输任何用户的个人信息。游玩本游戏无需创建账号、注册或登录。</p>
 
-  <h3>2. Local data <span class="zh">本地数据</span></h3>
-  <p>Game progress, settings, and preferences are stored locally on your device using Apple's UserDefaults system. This data never leaves your device. When you uninstall the app, all locally stored data is automatically deleted by iOS.</p>
-  <p class="zh-para">游戏进度、设置和偏好通过 Apple UserDefaults 存储在本机。这些数据不会离开你的设备。卸载 app 时,所有本地数据会被 iOS 自动删除。</p>
+  <h3 class="lang-en">Local data</h3>
+  <h3 class="lang-zh">本地数据</h3>
+  <p class="lang-en">Game progress, settings, and preferences are stored locally on your device using Apple's UserDefaults system. This data never leaves your device. When you uninstall the app, all locally stored data is automatically deleted by iOS.</p>
+  <p class="lang-zh">游戏进度、设置和偏好通过 Apple UserDefaults 存储在本机。这些数据不会离开你的设备。卸载 app 时，所有本地数据会被 iOS 自动删除。</p>
 
-  <h3>3. Apple Game Center <span class="zh">Apple Game Center (排行榜)</span></h3>
-  <p>The optional global leaderboard feature uses Apple's Game Center, which displays your Game Center alias alongside your top scores (distance traveled, zombies killed). Game Center data is handled by Apple — see <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>. You can disable score uploading in <strong>Settings → Upload Scores</strong>, or sign out of Game Center entirely from iOS Settings.</p>
-  <p class="zh-para">全球排行榜功能 (可选) 使用 Apple Game Center,展示你的 Game Center 昵称和最高分 (距离 / 击杀)。Game Center 数据由 Apple 管理,请参考 <a href="https://www.apple.com/legal/privacy/">Apple 隐私政策</a>。你可在 <strong>Settings → Upload Scores</strong> 关闭分数上传,或在 iOS 设置里登出 Game Center。</p>
+  <h3 class="lang-en">Apple Game Center</h3>
+  <h3 class="lang-zh">Apple Game Center（排行榜）</h3>
+  <p class="lang-en">The optional global leaderboard uses Apple's Game Center, which displays your Game Center alias alongside your top scores (distance traveled, zombies killed). Game Center data is handled by Apple — see <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>. You can disable score uploading in <strong>Settings → Upload Scores</strong>, or sign out of Game Center entirely from iOS Settings.</p>
+  <p class="lang-zh">全球排行榜（可选）使用 Apple Game Center，展示你的 Game Center 昵称和最高分（距离、击杀）。Game Center 数据由 Apple 管理，请参考 <a href="https://www.apple.com/legal/privacy/">Apple 隐私政策</a>。你可在 <strong>设置 → Upload Scores</strong> 关闭分数上传，或在 iOS 设置里登出 Game Center。</p>
 
-  <h3>4. Local 2-Player Co-Op <span class="zh">本地双人联机</span></h3>
-  <p>Local co-op uses Apple's MultipeerConnectivity framework over Wi-Fi or Bluetooth to connect two devices directly. No game state, account information, or device identifier is transmitted to any external server during a co-op session — all communication is peer-to-peer between the two connected devices on your local network.</p>
-  <p class="zh-para">本地双人联机使用 Apple 的 MultipeerConnectivity 框架,通过 Wi-Fi 或蓝牙直连两台设备。联机过程中游戏状态、账号信息、设备标识符均不向任何外部服务器传输 — 所有通信只在本地网络内的两台设备之间进行。</p>
+  <h3 class="lang-en">Local 2-player co-op</h3>
+  <h3 class="lang-zh">本地双人联机</h3>
+  <p class="lang-en">Local co-op uses Apple's MultipeerConnectivity framework over Wi-Fi or Bluetooth to connect two devices directly. No game state, account information, or device identifier is transmitted to any external server during a co-op session — all communication is peer-to-peer between the two connected devices on your local network.</p>
+  <p class="lang-zh">本地双人联机使用 Apple 的 MultipeerConnectivity 框架，通过 Wi-Fi 或蓝牙直连两台设备。联机过程中游戏状态、账号信息、设备标识符均不向任何外部服务器传输 — 所有通信只在本地网络内的两台设备之间进行。</p>
 
-  <h3>5. In-app purchases (Tip Jar) <span class="zh">内购 (打赏)</span></h3>
-  <p>The optional Tip Jar uses Apple's StoreKit framework. Purchase transactions are handled entirely by Apple — Squad Z does not see, store, or transmit any payment information. We only record an anonymous count of total "hearts" earned, stored locally on your device.</p>
-  <p class="zh-para">可选的 Tip Jar 通过 Apple StoreKit 处理。所有交易完全由 Apple 处理 — Squad Z 不接触、存储或传输任何付款信息。我们仅在本地记录累计获得的爱心总数。</p>
+  <h3 class="lang-en">In-app purchases (Tip Jar)</h3>
+  <h3 class="lang-zh">内购（打赏）</h3>
+  <p class="lang-en">The optional Tip Jar uses Apple's StoreKit framework. Purchase transactions are handled entirely by Apple — Squad Z does not see, store, or transmit any payment information. We only record an anonymous count of total "hearts" earned, stored locally on your device.</p>
+  <p class="lang-zh">可选的 Tip Jar 通过 Apple StoreKit 处理。所有交易完全由 Apple 处理 — Squad Z 不接触、存储或传输任何付款信息。我们仅在本地记录累计获得的爱心总数。</p>
 
-  <h3>6. iCloud sync (Tip Jar hearts only) <span class="zh">iCloud 同步 (仅 Tip Jar 爱心)</span></h3>
-  <p>The total number of "hearts" you've accumulated through the Tip Jar is synchronized across your devices using Apple's iCloud Key-Value Store. This is the only data we sync, and it never leaves Apple's iCloud infrastructure.</p>
-  <p class="zh-para">通过 Tip Jar 积累的爱心总数通过 Apple iCloud Key-Value Store 在你的设备间同步。这是我们唯一同步的数据,且仅存留于 Apple iCloud 基础设施内。</p>
+  <h3 class="lang-en">iCloud sync (Tip Jar hearts only)</h3>
+  <h3 class="lang-zh">iCloud 同步（仅 Tip Jar 爱心）</h3>
+  <p class="lang-en">The total number of "hearts" you've accumulated through the Tip Jar is synchronized across your devices using Apple's iCloud Key-Value Store. This is the only data we sync, and it never leaves Apple's iCloud infrastructure.</p>
+  <p class="lang-zh">通过 Tip Jar 积累的爱心总数通过 Apple iCloud Key-Value Store 在你的设备间同步。这是我们唯一同步的数据，且仅存留于 Apple iCloud 基础设施内。</p>
 
-  <h3>7. Community suggestions <span class="zh">建议箱 (CloudKit)</span></h3>
-  <p>If you choose to submit feedback through <strong>Community → Leave a Message</strong>, your message is sent through Apple's CloudKit to a private database accessible only to the developer. Submissions are tied to your iCloud account but are not made public. We may use submissions to improve the game.</p>
-  <p class="zh-para">如果你通过 <strong>Community → Leave a Message</strong> 提交反馈,消息会通过 Apple CloudKit 发送到仅开发者可访问的私有数据库。提交内容与你的 iCloud 账户关联,但不会公开。我们可能根据反馈改进游戏。</p>
+  <h3 class="lang-en">Community suggestions</h3>
+  <h3 class="lang-zh">建议箱（CloudKit）</h3>
+  <p class="lang-en">If you choose to submit feedback through <strong>Community → Leave a Message</strong>, your message is sent through Apple's CloudKit to a private database accessible only to the developer. Submissions are tied to your iCloud account but are not made public. We may use submissions to improve the game.</p>
+  <p class="lang-zh">如果你通过 <strong>Community → Leave a Message</strong> 提交反馈，消息会通过 Apple CloudKit 发送到仅开发者可访问的私有数据库。提交内容与你的 iCloud 账户关联，但不会公开。我们可能根据反馈改进游戏。</p>
 
-  <h3>8. Third-party tracking <span class="zh">第三方追踪</span></h3>
-  <p>Squad Z does <strong>not</strong> use any third-party tracking, analytics, advertising SDKs, or fingerprinting. There are <strong>no ads</strong>.</p>
-  <p class="zh-para">Squad Z <strong>不</strong>使用任何第三方追踪、数据分析、广告 SDK 或指纹识别。游戏内<strong>无广告</strong>。</p>
+  <h3 class="lang-en">Third-party tracking</h3>
+  <h3 class="lang-zh">第三方追踪</h3>
+  <p class="lang-en">Squad Z does <strong>not</strong> use any third-party tracking, analytics, advertising SDKs, or fingerprinting. There are <strong>no ads</strong>.</p>
+  <p class="lang-zh">Squad Z <strong>不</strong>使用任何第三方追踪、数据分析、广告 SDK 或指纹识别。游戏内<strong>无广告</strong>。</p>
 
-  <h3>9. Children's privacy <span class="zh">儿童隐私</span></h3>
-  <p>Squad Z is rated 12+ on the App Store. We do not knowingly collect personal information from any user, including minors. If you believe a minor has provided personal information through <strong>Community → Leave a Message</strong>, please email us and we will delete it.</p>
-  <p class="zh-para">Squad Z 在 App Store 上的年龄分级为 12+。我们不会有意收集任何用户的个人信息,包括未成年人。如果你认为未成年人通过 <strong>Community → Leave a Message</strong> 提交了个人信息,请发邮件给我们,我们将删除。</p>
+  <h3 class="lang-en">Children's privacy</h3>
+  <h3 class="lang-zh">儿童隐私</h3>
+  <p class="lang-en">Squad Z is rated 12+ on the App Store. We do not knowingly collect personal information from any user, including minors. If you believe a minor has provided personal information through <strong>Community → Leave a Message</strong>, please email us and we will delete it.</p>
+  <p class="lang-zh">Squad Z 在 App Store 上的年龄分级为 12+。我们不会有意收集任何用户的个人信息，包括未成年人。如果你认为未成年人通过 <strong>Community → Leave a Message</strong> 提交了个人信息，请发邮件给我们，我们将删除。</p>
 
-  <h3>10. Changes to this policy <span class="zh">政策变更</span></h3>
-  <p>If we update this policy, the change will be reflected on this page with an updated "Last updated" date at the bottom. For material changes, we may also note them in the App Store "What's New" section of the next release.</p>
-  <p class="zh-para">如更新本政策,本页底部的"Last updated"日期会同步更新。重大变更也可能在下一版本 App Store 的"What's New"中说明。</p>
+  <h3 class="lang-en">Changes to this policy</h3>
+  <h3 class="lang-zh">政策变更</h3>
+  <p class="lang-en">If we update this policy, the change will be reflected on this page with an updated "Last updated" date at the bottom. For material changes, we may also note them in the App Store "What's New" section of the next release.</p>
+  <p class="lang-zh">如更新本政策，本页底部的"Last updated"日期会同步更新。重大变更也可能在下一版本 App Store 的"What's New"中说明。</p>
 
-  <h3>11. Contact <span class="zh">联系方式</span></h3>
-  <p>Privacy questions or requests: <a href="mailto:yidong289@gmail.com">yidong289@gmail.com</a></p>
-  <p class="zh-para">隐私相关问题或请求:<a href="mailto:yidong289@gmail.com">yidong289@gmail.com</a></p>
+  <h3 class="lang-en">Contact</h3>
+  <h3 class="lang-zh">联系方式</h3>
+  <p class="lang-en">Privacy questions or requests: <a href="mailto:yidong289@gmail.com">yidong289@gmail.com</a></p>
+  <p class="lang-zh">隐私相关问题或请求：<a href="mailto:yidong289@gmail.com">yidong289@gmail.com</a></p>
 </section>
 
 <!-- ═══════════════ ABOUT ═══════════════ -->
 <section id="about">
-  <h2>About <span class="zh">关于</span></h2>
-  <p>Squad Z (Hi Zombie) is a pixel-art zombie survival runner for iOS, built by one developer over a year of late nights. Free, no ads, no paywalls. Solo or local 2-player couch co-op.</p>
-  <p class="zh-para">Squad Z (Hi Zombie) 是一款像素风末日生存跑酷 iOS 游戏,由一名开发者用一年的时间独立完成。免费,无广告,无付费墙。支持单人或本地双人沙发联机。</p>
-  <p>Built with Swift &amp; SpriteKit. Currently in TestFlight, launching on the App Store soon.</p>
-  <p class="zh-para">用 Swift 和 SpriteKit 开发,目前 TestFlight 公测中,即将正式上架 App Store。</p>
+  <h2 class="lang-en">About</h2>
+  <h2 class="lang-zh">关于</h2>
+  <p class="lang-en">Squad Z (Hi Zombie) is a pixel-art zombie survival runner for iOS, built by one developer over a year of late nights. Free, no ads, no paywalls. Solo or local 2-player couch co-op.</p>
+  <p class="lang-zh">Squad Z (Hi Zombie) 是一款像素风末日生存跑酷 iOS 游戏，由一名开发者用一年的时间独立完成。免费，无广告，无付费墙。支持单人或本地双人沙发联机。</p>
+  <p class="lang-en">Built with Swift &amp; SpriteKit. Currently in TestFlight, launching on the App Store soon.</p>
+  <p class="lang-zh">用 Swift 和 SpriteKit 开发，目前 TestFlight 公测中，即将正式上架 App Store。</p>
 </section>
 
 <footer>
-  © 2026 Yidong Li · Squad Z
-  <span class="last-updated">Last updated: 2026-06-06</span>
+  <div>© 2026 Yidong Li · Squad Z</div>
+  <div class="stack">Last updated: 2026-06-13</div>
 </footer>
 
 </div>
+
+<script>
+(function() {
+  var buttons = document.querySelectorAll('.lang-toggle button');
+  var body = document.body;
+  function setLang(lang) {
+    body.className = 'lang-' + lang;
+    document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+    buttons.forEach(function(b) {
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
+    try { localStorage.setItem('squadz_lang', lang); } catch(e) {}
+  }
+  // Initial language: saved preference > browser language > English
+  var initial = 'en';
+  try {
+    var saved = localStorage.getItem('squadz_lang');
+    if (saved === 'zh' || saved === 'en') {
+      initial = saved;
+    } else if ((navigator.language || '').toLowerCase().indexOf('zh') === 0) {
+      initial = 'zh';
+    }
+  } catch(e) {}
+  setLang(initial);
+  buttons.forEach(function(b) {
+    b.addEventListener('click', function() { setLang(b.getAttribute('data-lang')); });
+  });
+})();
+</script>
+
 </body>
 </html>
