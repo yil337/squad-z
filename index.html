@@ -5,6 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Z Squad — Support & Privacy</title>
 <meta name="description" content="Official support and privacy information for Z Squad, a pixel-art zombie roguelike runner with local co-op for iOS by Yidong Li.">
+
+<!-- ── Identity / sharing meta（icon.png = 游戏 1024² App Icon，放在站点 repo 根目录）── -->
+<link rel="icon" type="image/png" href="/icon.png">
+<link rel="apple-touch-icon" href="/icon.png">
+<link rel="canonical" href="https://zsquad.app/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Z Squad">
+<meta property="og:title" content="Z Squad — Pixel Zombie Roguelike · Co-op">
+<meta property="og:description" content="Free pixel-art zombie roguelike runner for iOS. Solo or local 2-player couch co-op. No ads, no paywalls.">
+<meta property="og:url" content="https://zsquad.app/">
+<meta property="og:image" content="https://zsquad.app/icon.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Z Squad — Pixel Zombie Roguelike · Co-op">
+<meta name="twitter:description" content="Free pixel-art zombie roguelike runner for iOS. Solo or local 2-player couch co-op. No ads, no paywalls.">
+<meta name="twitter:image" content="https://zsquad.app/icon.png">
+<!-- Smart App Banner：app 未上架时 Safari 静默不显示，上架后自动出现"打开 App Store"顶栏，无需任何改动 -->
+<meta name="apple-itunes-app" content="app-id=6763394067">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Z Squad",
+  "alternateName": "僵尸小队",
+  "url": "https://zsquad.app/",
+  "image": "https://zsquad.app/icon.png",
+  "description": "Free pixel-art zombie roguelike runner for iOS. Solo or local 2-player couch co-op. No ads, no paywalls.",
+  "operatingSystem": "iOS",
+  "applicationCategory": "GameApplication",
+  "genre": ["Roguelike", "Action", "Survival"],
+  "playMode": ["SinglePlayer", "CoOp"],
+  "author": { "@type": "Person", "name": "Yidong Li" }
+}
+</script>
 <style>
   :root {
     --bg:        #fbfbfd;
@@ -236,6 +271,36 @@
   }
   details > p:last-child { margin-bottom: 0; }
 
+  /* ─── "Coming at launch" placeholder cards ─── */
+  .placeholder-card {
+    background: var(--paper);
+    border: 1px dashed var(--rule);
+    border-radius: 18px;
+    padding: 24px 28px;
+    margin: 0 0 16px;
+  }
+  .placeholder-card .ph-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .soon-pill {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    border: 1px solid var(--rule);
+    border-radius: 980px;
+    padding: 3px 9px;
+    white-space: nowrap;
+  }
+  .placeholder-card p { margin: 0; font-size: 15px; color: var(--ink-mute); }
+
   /* ─── Footer ─── */
   footer {
     text-align: center;
@@ -286,7 +351,40 @@
   <p class="tagline lang-zh">像素僵尸肉鸽跑酷 · 本地双人联机</p>
   <p class="listed lang-en">Coming soon to the App Store</p>
   <p class="listed lang-zh">即将上架 App Store</p>
+  <!-- ═══ 上架日 CHECKLIST（app 上线当天翻这几处）═══
+       1. 上面两行 "Coming soon" → "Available on the App Store / 已上架 App Store"
+       2. 解开下面的 App Store badge（官方黑色 badge 从
+          https://developer.apple.com/app-store/marketing/tools/ 下载 SVG 放 repo 根，
+          文件名 appstore-badge.svg；badge 不许改样式/裁边）
+       3. About 段删 "TestFlight 公测中" 那句
+       4. Media 区两张占位卡换成真 trailer 嵌入 + 截图画廊（复用 ASC §3.4 截图 + §9 宣传片）
+       5. Press 区挂真 press kit（factsheet + 截图 zip + logo zip + trailer mp4）
+       6. footer 社交链接解开（handle 抢注后）
+       <head> 里的 Smart App Banner 不用动——上架后自动生效。 -->
+  <!--
+  <a class="store-badge" href="https://apps.apple.com/app/id6763394067">
+    <img src="/appstore-badge.svg" alt="Download on the App Store" style="height:54px;margin-top:20px">
+  </a>
+  -->
 </header>
+
+<!-- ═══════════════ MEDIA（占位，上架时换真内容）═══════════════ -->
+<section id="media">
+  <h2 class="lang-en">Media</h2>
+  <h2 class="lang-zh">影像</h2>
+
+  <div class="placeholder-card">
+    <p class="ph-title"><span class="lang-en">Trailer</span><span class="lang-zh">宣传片</span> <span class="soon-pill lang-en">coming at launch</span><span class="soon-pill lang-zh">上架时上线</span></p>
+    <p class="lang-en">A 30-second gameplay trailer is in the works and will premiere here.</p>
+    <p class="lang-zh">30 秒实机宣传片制作中，届时在此首发。</p>
+  </div>
+
+  <div class="placeholder-card">
+    <p class="ph-title"><span class="lang-en">Screenshots</span><span class="lang-zh">游戏截图</span> <span class="soon-pill lang-en">coming at launch</span><span class="soon-pill lang-zh">上架时上线</span></p>
+    <p class="lang-en">A gallery of in-game screenshots will live here alongside the App Store launch.</p>
+    <p class="lang-zh">游戏截图画廊将随 App Store 上架同步放出。</p>
+  </div>
+</section>
 
 <!-- ═══════════════ SUPPORT ═══════════════ -->
 <section id="support">
@@ -457,15 +555,28 @@
 <section id="about">
   <h2 class="lang-en">About</h2>
   <h2 class="lang-zh">关于</h2>
-  <p class="lang-en">Z Squad is a pixel-art zombie survival runner for iOS, built by one developer over a year of late nights. Free, no ads, no paywalls. Solo or local 2-player couch co-op.</p>
-  <p class="lang-zh">Z Squad 是一款像素风末日生存跑酷 iOS 游戏，由一名开发者用一年的时间独立完成。免费，无广告，无付费墙。支持单人或本地双人沙发联机。</p>
+  <p class="lang-en">Z Squad is a pixel-art zombie survival runner for iOS, built solo by a developer who loves the zombie genre. Free, no ads, no paywalls. Solo or local 2-player couch co-op.</p>
+  <p class="lang-zh">Z Squad 是一款像素风末日生存跑酷 iOS 游戏，由一位热爱僵尸题材的开发者独立完成。免费，无广告，无付费墙。支持单人或本地双人沙发联机。</p>
   <p class="lang-en">Built with Swift &amp; SpriteKit. Currently in TestFlight, launching on the App Store soon.</p>
   <p class="lang-zh">用 Swift 和 SpriteKit 开发，目前 TestFlight 公测中，即将正式上架 App Store。</p>
 </section>
 
+<!-- ═══════════════ PRESS ═══════════════ -->
+<section id="press">
+  <h2 class="lang-en">Press</h2>
+  <h2 class="lang-zh">媒体</h2>
+  <p class="lang-en">A full press kit — factsheet, screenshots, logos, and trailer downloads — will be published here at launch. Writing about Z Squad before then? Email <a href="mailto:contact@zsquad.app">contact@zsquad.app</a> and we'll send materials directly.</p>
+  <p class="lang-zh">完整媒体资料包（factsheet、截图、logo、宣传片下载）将在上架时发布于此。想提前报道 Z Squad？邮件 <a href="mailto:contact@zsquad.app">contact@zsquad.app</a>，我们直接把素材发给你。</p>
+</section>
+
 <footer>
+  <!-- 社交链接占位——handle 抢注后解开并填真链接（ZSquad 系：X / Discord / Reddit / YouTube）：
+  <div style="margin-bottom:10px">
+    <a href="https://x.com/ZSquad_game">X</a> · <a href="#">Discord</a> · <a href="#">Reddit</a>
+  </div>
+  -->
   <div>© 2026 Yidong Li · Z Squad</div>
-  <div class="stack">Last updated: 2026-07-12</div>
+  <div class="stack">Last updated: 2026-07-13</div>
 </footer>
 
 </div>
