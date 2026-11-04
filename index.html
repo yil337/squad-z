@@ -13,14 +13,14 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Z Squad">
 <meta property="og:title" content="Z Squad — Pixel Zombie Roguelike · Co-op">
-<meta property="og:description" content="Free pixel-art zombie roguelike runner for iOS. Solo or local 2-player couch co-op. No ads, no paywalls.">
+<meta property="og:description" content="Free-to-play pixel-art zombie roguelike runner for iOS. Solo or local 2-player co-op on two devices. No ads.">
 <meta property="og:url" content="https://zsquad.app/">
 <meta property="og:image" content="https://zsquad.app/icon.png">
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="1024">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Z Squad — Pixel Zombie Roguelike · Co-op">
-<meta name="twitter:description" content="Free pixel-art zombie roguelike runner for iOS. Solo or local 2-player couch co-op. No ads, no paywalls.">
+<meta name="twitter:description" content="Free-to-play pixel-art zombie roguelike runner for iOS. Solo or local 2-player co-op on two devices. No ads.">
 <meta name="twitter:image" content="https://zsquad.app/icon.png">
 <!-- Smart App Banner：app 未上架时 Safari 静默不显示，上架后自动出现"打开 App Store"顶栏，无需任何改动 -->
 <meta name="apple-itunes-app" content="app-id=6763394067">
@@ -32,7 +32,7 @@
   "alternateName": "僵尸小队",
   "url": "https://zsquad.app/",
   "image": "https://zsquad.app/icon.png",
-  "description": "Free pixel-art zombie roguelike runner for iOS. Solo or local 2-player couch co-op. No ads, no paywalls.",
+  "description": "Free-to-play pixel-art zombie roguelike runner for iOS. Solo or local 2-player co-op on two devices. No ads.",
   "operatingSystem": "iOS",
   "applicationCategory": "GameApplication",
   "genre": ["Roguelike", "Action", "Survival"],
@@ -329,6 +329,29 @@
   footer .social a:hover { color: var(--accent); }
 
   /* ─── Responsive ─── */
+  /* ─── Press fact sheet / feature list ─── */
+  .pk-facts { width: 100%; border-collapse: collapse; margin: 6px 0 8px; }
+  .pk-facts td { padding: 10px 0; border-bottom: 1px solid var(--rule-soft);
+    vertical-align: top; font-size: 16px; }
+  .pk-facts tr:last-child td { border-bottom: none; }
+  .pk-facts td.k { width: 38%; color: var(--ink-mute); padding-right: 16px; }
+  .pk-facts td.v { color: var(--ink); }
+  ul.pk-feat { list-style: none; padding: 0; margin: 8px 0 0; }
+  ul.pk-feat li { position: relative; padding: 9px 0 9px 24px; color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule-soft); font-size: 16px; }
+  ul.pk-feat li:last-child { border-bottom: none; }
+  ul.pk-feat li::before { content: "\25B8"; position: absolute; left: 2px; color: var(--accent); }
+
+  /* ─── Privacy policy lists / meta ─── */
+  .policy-meta { font-size: 14px; color: var(--ink-mute); margin: -16px 0 20px; }
+  ul.policy-list { margin: 0 0 16px; padding-left: 22px; }
+  ul.policy-list li { font-size: 17px; color: var(--ink-soft); line-height: 1.62;
+    margin: 0 0 8px; letter-spacing: -0.003em; }
+  body.lang-zh ul.policy-list li { letter-spacing: 0; }
+  .summary-card ul.policy-list { margin: 6px 0 0; }
+  .summary-card ul.policy-list li { font-size: 16px; }
+  .summary-card ul.policy-list li:last-child { margin-bottom: 0; }
+
   @media (max-width: 640px) {
     .container { padding: 72px 22px 80px; }
     h1 { font-size: 40px; }
@@ -343,6 +366,8 @@
     .contact-card .email { font-size: 19px; }
     .lang-toggle { top: 16px; right: 16px; }
     .lang-toggle button { padding: 5px 13px; font-size: 12px; }
+    .pk-facts td.k { width: 44%; }
+    ul.policy-list li { font-size: 16px; }
   }
 </style>
 </head>
@@ -359,8 +384,8 @@
   <h1>Z Squad</h1>
   <p class="tagline lang-en">Pixel Zombie Roguelike · Co-op</p>
   <p class="tagline lang-zh">像素僵尸肉鸽跑酷 · 本地双人联机</p>
-  <p class="listed lang-en">Coming soon to the App Store</p>
-  <p class="listed lang-zh">即将上架 App Store</p>
+  <p class="listed lang-en">Coming to the App Store on December 3</p>
+  <p class="listed lang-zh">12 月 3 日上架 App Store</p>
   <!-- ═══ 上架日 CHECKLIST（app 上线当天翻这几处）═══
        1. 上面两行 "Coming soon" → "Available on the App Store / 已上架 App Store"
        2. 解开下面的 App Store badge（官方黑色 badge 从
@@ -368,7 +393,7 @@
           文件名 appstore-badge.svg；badge 不许改样式/裁边）
        3. About 段删 "TestFlight 公测中" 那句
        4. Media 区两张占位卡换成真 trailer 嵌入 + 截图画廊（复用 ASC §3.4 截图 + §9 宣传片）
-       5. Press 区挂真 press kit（factsheet + 截图 zip + logo zip + trailer mp4）
+       5. Press 区 factsheet/描述/卖点文本已就位（2026-07-23）；上架时只需补素材下载链接（截图 zip + logo zip + trailer mp4）
        6. footer 社交链接解开（handle 抢注后）
        <head> 里的 Smart App Banner 不用动——上架后自动生效。 -->
   <!--
@@ -401,8 +426,8 @@
   <h2 class="lang-en">Support</h2>
   <h2 class="lang-zh">玩家支持</h2>
 
-  <p class="lang-en">For any issues, bugs, or feedback, please reach out via email below.</p>
-  <p class="lang-zh">如有任何问题、bug 或反馈，请通过下方邮箱联系。</p>
+  <p class="lang-en">Questions, bugs, purchase problems or ideas — email us and a real person (the developer) will reply.</p>
+  <p class="lang-zh">遇到问题、bug、购买异常，或者有点子想说——发邮件给我们，回信的就是开发者本人。</p>
 
   <div class="contact-card">
     <div class="label">
@@ -410,8 +435,8 @@
       <span class="lang-zh">邮箱</span>
     </div>
     <a class="email" href="mailto:contact@zsquad.app">contact@zsquad.app</a>
-    <p class="note lang-en">Typical response within 1–3 days. When reporting an issue, please include your device model, iOS version, and a brief description of what happened.</p>
-    <p class="note lang-zh">通常 1–3 天内回复。报告问题时，请说明设备型号、iOS 版本和遇到的现象。</p>
+    <p class="note lang-en">We usually reply within 1–3 days. When reporting a problem, please include your device model, iOS version, the game version (shown on the App Store page or in Settings → General → iPhone Storage → Z Squad), and what happened.</p>
+    <p class="note lang-zh">通常 1–3 天内回复。报告问题时，请附上设备型号、iOS 版本、游戏版本号（可在 App Store 页面或 iOS 设置 → 通用 → iPhone 储存空间 → Z Squad 里查看），以及具体发生了什么。</p>
   </div>
 
   <h3 class="lang-en">Frequently asked questions</h3>
@@ -419,38 +444,84 @@
 
   <details>
     <summary>
-      <span class="lang-en">How do I start local 2-player co-op?</span>
-      <span class="lang-zh">如何开始本地双人联机？</span>
+      <span class="lang-en">How do I start playing?</span>
+      <span class="lang-zh">怎么开始玩？</span>
     </summary>
-    <p class="lang-en">Both players need iPhones or iPads on the same Wi-Fi network — Bluetooth also works. From the Main Menu, tap <strong>PLAY → DOUBLE PLAYER</strong>. One device taps <strong>CREATE ROOM</strong>, the other <strong>JOIN ROOM</strong>. Both must allow "Local Network" permission when iOS prompts.</p>
-    <p class="lang-zh">两台 iPhone 或 iPad 在同一 Wi-Fi 下即可，蓝牙也行。主菜单点<strong>开始 → 双人</strong>，一台点<strong>开房间</strong>，另一台点<strong>加入房间</strong>。两台都要在 iOS 询问时允许"本地网络"权限。</p>
+    <p class="lang-en">Tap <strong>START</strong> on the title screen. You'll arrive at your squad's home camp — follow the opening scenes, and your first trip out is a short tutorial run. After that, walk to the squad vehicle parked outside the gate and tap <strong>HEAD OUT?</strong> to pick a mode, a save slot and your loadout, then hit the road.</p>
+    <p class="lang-zh">在开屏页点<strong>开始</strong>，你会来到小队的家园营地——跟着开场剧情走，第一次出门是一段简短的教程。之后走到大门外停着的小队车旁，点<strong>出发？</strong>，选择模式、存档和装备就能上路。</p>
   </details>
 
   <details>
     <summary>
-      <span class="lang-en">I bought a tip in the Tip Jar but didn't see the hearts.</span>
-      <span class="lang-zh">我打赏后没看到爱心。</span>
+      <span class="lang-en">What are Dog Tags, and do I have to pay for them?</span>
+      <span class="lang-zh">狗牌是什么？必须花钱买吗？</span>
     </summary>
-    <p class="lang-en">Open <strong>COMMUNITY</strong> from the Main Menu — your hearts appear on the Wall of Survivors once the App Store finalizes the purchase. If they don't show within a few minutes, restart the app. If still missing, email us with your purchase receipt and we'll investigate.</p>
-    <p class="lang-zh">主菜单打开<strong>社区</strong>，购买完成后爱心会显示在幸存者墙上。如果几分钟内仍未出现，请重启游戏。仍有问题请把购买收据发邮件给我们查询。</p>
+    <p class="lang-en">Dog Tags are Z Squad's permanent currency. You spend them on things like weapon attachments, recruiting and upgrading companions, and unlocking skills. You earn them just by playing — from bosses, achievements, daily missions and more — and the Campsite gives new players a free Welcome Gift.</p>
+    <p class="lang-en">The <strong>Campsite</strong> (from the main menu or the button at the top of your home screen) also sells Dog Tag packs as optional in-app purchases, including a one-time Starter Pack. Buying only gets you there faster; everything can be earned without paying. Prices are shown in your local currency before you confirm.</p>
+    <p class="lang-zh">狗牌是 Z Squad 的永久货币，可以用来买武器配件、招募和升级同伴、解锁技能等。正常游玩就能获得——打 Boss、完成成就、每日任务等都会给；新玩家在营地还能免费领一份新手礼包。</p>
+    <p class="lang-zh"><strong>营地</strong>（主菜单或家园顶部按钮进入）也出售狗牌礼包作为可选内购，其中包括一次性的首充礼包。购买只是让你更快拿到，所有东西不花钱也都能靠玩获得。确认购买前会以你所在地区的货币显示价格。</p>
   </details>
 
   <details>
     <summary>
-      <span class="lang-en">The leaderboard isn't loading.</span>
-      <span class="lang-zh">排行榜加载不出来。</span>
+      <span class="lang-en">I bought Dog Tags but didn't receive them.</span>
+      <span class="lang-zh">我买了狗牌但没到账。</span>
     </summary>
-    <p class="lang-en">The leaderboard uses Apple Game Center, which requires an internet connection and a signed-in Game Center account. Open <strong>iOS Settings → Game Center</strong> to confirm sign-in. If still failing, try toggling Game Center off and on, then relaunch the app.</p>
-    <p class="lang-zh">排行榜基于 Apple Game Center，需要网络且已登录 Game Center。打开 <strong>iOS 设置 → Game Center</strong> 确认已登录。仍不行可尝试切换 Game Center 后重启游戏。</p>
+    <p class="lang-en"><strong>"Waiting for approval…"</strong> — the purchase needs approval through Apple's Ask to Buy (Family Sharing). Once a parent or guardian approves it, the Dog Tags are added automatically the next time Z Squad is open. Nothing is charged until it's approved.</p>
+    <p class="lang-en"><strong>The connection dropped or the app closed mid-purchase</strong> — reopen Z Squad with an internet connection and give it a minute. The App Store re-delivers any unfinished purchase, and the game adds the Dog Tags automatically. Each purchase is only ever delivered once, so you won't be double-counted.</p>
+    <p class="lang-en">Still missing? Email us with the order ID from <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> (or your Apple receipt email) and we'll sort it out.</p>
+    <p class="lang-zh"><strong>显示"等待批准…"</strong>——这笔购买需要通过 Apple 的"购买前询问"（家人共享）批准。家长或监护人批准后，下次打开 Z Squad 时狗牌会自动到账。批准前不会扣款。</p>
+    <p class="lang-zh"><strong>购买途中断网或游戏被关掉</strong>——联网后重新打开 Z Squad，稍等一会儿。App Store 会重新送达未完成的购买，游戏会自动把狗牌加上。每笔购买只会到账一次，不会重复计算。</p>
+    <p class="lang-zh">仍然没到？请把 <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>（或 Apple 收据邮件）里的订单号发邮件给我们，我们来处理。</p>
   </details>
 
   <details>
     <summary>
-      <span class="lang-en">I lost my run progress.</span>
-      <span class="lang-zh">我的进度没了。</span>
+      <span class="lang-en">Will my Dog Tags and progress carry over if I reinstall or switch devices?</span>
+      <span class="lang-zh">删掉重装或换手机，狗牌和进度还在吗？</span>
     </summary>
-    <p class="lang-en">Z Squad autosaves the active run when you background the app (e.g., during a call or via the app switcher). When you reopen, <strong>PLAY → SINGLE PLAYER</strong> resumes the run. Progress is intentionally wiped when you finish a run, restart, or enter a boss arena. Saves are local to the device and not synced across devices.</p>
-    <p class="lang-zh">Z Squad 会在你切后台时自动保存当前进度，重开后点<strong>开始 → 单人</strong>可以续局。每局结束、重开、或进入 boss 战时存档会清空 — 这是设计如此。存档仅本机，不跨设备同步。</p>
+    <p class="lang-en">Your progress — saves, home, unlocks and Dog Tags (including purchased ones) — is stored on your device, not on an online account. It moves to a new iPhone or iPad when you transfer or restore from an iCloud or computer backup. Deleting the app deletes this data, and because Dog Tag packs are consumable purchases, the App Store has no "Restore Purchases" for them. If something went wrong, email us and we'll do our best to help.</p>
+    <p class="lang-zh">你的进度——存档、家园、解锁内容和狗牌（包括购买的）——保存在你的设备上，而不是某个在线账号里。用 iCloud 或电脑备份迁移 / 恢复到新的 iPhone 或 iPad 时会一起带过去。删除 App 会删除这些数据；而狗牌礼包属于消耗型内购，App Store 没有"恢复购买"。如果出了问题，请发邮件给我们，我们会尽力帮忙。</p>
+  </details>
+
+  <details>
+    <summary>
+      <span class="lang-en">How do I play local 2-player co-op?</span>
+      <span class="lang-zh">怎么玩本地双人联机？</span>
+    </summary>
+    <p class="lang-en">You need two iPhones or iPads, each with Z Squad updated to the same version, and both players must have finished the tutorial. Turn on Wi-Fi and Bluetooth on both and keep the devices close — no internet and no shared Wi-Fi network are needed. At home, walk to the vehicle outside the gate, tap <strong>HEAD OUT? → DOUBLE PLAYER</strong> and choose your loadout. One player taps <strong>CREATE ROOM</strong>, the other <strong>JOIN ROOM</strong>. Allow "Local Network" access when iOS asks.</p>
+    <p class="lang-zh">需要两台 iPhone 或 iPad，都更新到同一版本的 Z Squad，并且两人都已完成教程。两台都打开 Wi-Fi 和蓝牙并放在一起——不需要联网，也不需要连同一个 Wi-Fi。在家园走到大门外的车旁，点<strong>出发？→ 双人</strong>并选好装备，一人点<strong>开房间</strong>，另一人点<strong>加入房间</strong>。iOS 询问时请允许"本地网络"权限。</p>
+  </details>
+
+  <details>
+    <summary>
+      <span class="lang-en">I denied "Local Network" access, or the two devices can't find each other.</span>
+      <span class="lang-zh">我拒绝了"本地网络"权限 / 两台设备找不到对方。</span>
+    </summary>
+    <p class="lang-en">Open <strong>iOS Settings → Privacy &amp; Security → Local Network</strong> and turn on <strong>Z Squad</strong> (you can also find it under Settings → Z Squad). Do this on both devices, then fully close and reopen the game. Also check that Wi-Fi and Bluetooth are on (not just disconnected in Control Center), Airplane Mode is off, and both devices run the same game version.</p>
+    <p class="lang-en">This permission is used only to find and connect to the other player's device nearby. Z Squad doesn't use it to scan your network or send anything off your local connection.</p>
+    <p class="lang-zh">打开 <strong>iOS 设置 → 隐私与安全性 → 本地网络</strong>，打开 <strong>Z Squad</strong>（也可以在 设置 → Z Squad 里找到）。两台设备都要打开，然后彻底关掉游戏再重新打开。另外请确认 Wi-Fi 和蓝牙确实开着（不只是在控制中心里断开了连接）、飞行模式已关闭、两台的游戏版本一致。</p>
+    <p class="lang-zh">这项权限只用来寻找并连接附近另一位玩家的设备。Z Squad 不会用它扫描你的网络，也不会把任何数据发到本地连接之外。</p>
+  </details>
+
+  <details>
+    <summary>
+      <span class="lang-en">How do saves work? I lost my run.</span>
+      <span class="lang-zh">存档是怎么回事？我这局没了。</span>
+    </summary>
+    <p class="lang-en">Z Squad has four save slots. Your run is saved automatically — including when you switch away from the app — and picking the same slot when you <strong>HEAD OUT?</strong> again continues it. Each new day in a run is also kept as a checkpoint you can return to. When your squad falls, that run is over and its slot starts a new one; that's the roguelike part. Your home, Dog Tags and unlocks are permanent and are never lost when a run ends.</p>
+    <p class="lang-en">Saves live only on this device and aren't synced between devices.</p>
+    <p class="lang-zh">Z Squad 有 4 个存档位。跑局会自动保存——包括你切出游戏的时候——再次<strong>出发？</strong>时选同一个存档位就能接着玩。一局里每过一天也会留一个检查点，可以回到那一天。小队全军覆没时，这一局就结束了，该存档位会重新开局——这是肉鸽玩法的一部分。家园、狗牌和解锁内容是永久的，跑局结束也不会丢。</p>
+    <p class="lang-zh">存档只保存在本机，不会在设备之间同步。</p>
+  </details>
+
+  <details>
+    <summary>
+      <span class="lang-en">How do I change the language?</span>
+      <span class="lang-zh">怎么切换语言？</span>
+    </summary>
+    <p class="lang-en">The game is available in English and Simplified Chinese. On first launch it follows your device language (Chinese → Simplified Chinese, anything else → English). You can switch anytime in <strong>Settings → LANGUAGE</strong>, from the main menu or the pause menu.</p>
+    <p class="lang-zh">游戏支持英文和简体中文。第一次打开时会跟随设备语言（中文系统 → 简体中文，其他 → 英文）。之后可随时在主菜单或暂停菜单的<strong>设置 → 语言</strong>里切换。</p>
   </details>
 
   <details>
@@ -458,26 +529,26 @@
       <span class="lang-en">Does the game work offline?</span>
       <span class="lang-zh">游戏能离线玩吗？</span>
     </summary>
-    <p class="lang-en">Yes. The full single-player game works offline. Internet is only required for Game Center leaderboards, Tip Jar purchases, and submitting suggestions via Community → Leave a Message. Local 2-player co-op uses Wi-Fi or Bluetooth between your two devices — no internet needed.</p>
-    <p class="lang-zh">是的。完整单人游戏可离线。需要联网的功能：Game Center 排行榜、Tip Jar 打赏、Community → Leave a Message 反馈提交。本地双人联机走 Wi-Fi 或蓝牙直连，不需要外网。</p>
+    <p class="lang-en">Yes. Single-player and local co-op both work fully offline. An internet connection is only needed for Game Center leaderboards and achievements, buying Dog Tags, and sending a message from the Campsite. Scores earned offline are kept and uploaded the next time you're online.</p>
+    <p class="lang-zh">可以。单人和本地双人都能完全离线游玩。只有 Game Center 排行榜与成就、购买狗牌、在营地留言这几项需要联网。离线时打出的成绩会先保存，下次联网时自动上传。</p>
   </details>
 
   <details>
     <summary>
-      <span class="lang-en">Why does the game ask for "Local Network" permission?</span>
-      <span class="lang-zh">为什么要"本地网络"权限？</span>
+      <span class="lang-en">The leaderboard isn't loading.</span>
+      <span class="lang-zh">排行榜加载不出来。</span>
     </summary>
-    <p class="lang-en">Only for local 2-player co-op. The game uses Apple's MultipeerConnectivity framework, which discovers nearby devices via Bonjour on the local network. Z Squad does <strong>not</strong> transmit any data outside your local network — no tracking, no analytics, no external servers.</p>
-    <p class="lang-zh">仅本地双人联机需要。游戏使用 Apple 的 MultipeerConnectivity 框架，通过本地 Bonjour 发现附近设备。Z Squad <strong>不向</strong>本地网络外传输任何数据 — 无追踪、无分析、无外部服务器。</p>
+    <p class="lang-en">Leaderboards and achievements use Apple Game Center, which needs an internet connection and a signed-in Game Center account. Check <strong>iOS Settings → Game Center</strong>, and make sure <strong>Settings → UPLOAD SCORES</strong> is on in the game. If it still fails, sign out of Game Center and back in, then relaunch the app.</p>
+    <p class="lang-zh">排行榜和成就基于 Apple Game Center，需要联网并登录 Game Center。请检查 <strong>iOS 设置 → Game Center</strong>，并确认游戏内<strong>设置 → 上传分数</strong>已开启。仍然不行的话，退出 Game Center 再重新登录，然后重启游戏。</p>
   </details>
 
   <details>
     <summary>
-      <span class="lang-en">How do I report a bug?</span>
-      <span class="lang-zh">如何报告 bug？</span>
+      <span class="lang-en">How do I send feedback from inside the game?</span>
+      <span class="lang-zh">怎么在游戏里给开发者留言？</span>
     </summary>
-    <p class="lang-en">Email <a href="mailto:contact@zsquad.app">contact@zsquad.app</a> with a brief description of the bug, your device model (e.g., "iPhone 14 Pro"), and your iOS version (Settings → General → About → iOS Version). Screenshots or screen recordings help a lot.</p>
-    <p class="lang-zh">邮件 <a href="mailto:contact@zsquad.app">contact@zsquad.app</a>，附上 bug 简述、设备型号（如 "iPhone 14 Pro"）和 iOS 版本（设置 → 通用 → 关于本机）。截图或屏幕录像帮助很大。</p>
+    <p class="lang-en">Open the <strong>Campsite</strong> and choose <strong>LEAVE A MESSAGE</strong>. Messages are sent through Apple's iCloud, so you need to be signed in to iCloud and online. We read every one, but we can't reply inside the game — if you'd like an answer, email us instead. See the <a href="#privacy">Privacy Policy</a> for what a message includes.</p>
+    <p class="lang-zh">打开<strong>营地</strong>，选择<strong>留个言</strong>。留言通过 Apple iCloud 发送，所以需要登录 iCloud 并联网。每条我们都会看，但没办法在游戏里回复——想要回信的话请直接发邮件。留言包含哪些信息见下方<a href="#privacy">隐私政策</a>。</p>
   </details>
 
   <details>
@@ -485,95 +556,183 @@
       <span class="lang-en">I want a refund.</span>
       <span class="lang-zh">我想退款。</span>
     </summary>
-    <p class="lang-en">Refunds for App Store purchases — including Tip Jar tips — are handled by <strong>Apple</strong>, not by the developer. Visit <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> and sign in with your Apple ID to submit a refund request.</p>
-    <p class="lang-zh">App Store 购买（包括 Tip Jar 打赏）的退款由 <strong>Apple</strong> 处理，不通过开发者。访问 <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a> 用你的 Apple ID 登录提交退款申请。</p>
+    <p class="lang-en">All App Store purchases, including Dog Tag packs, are processed by <strong>Apple</strong>, so refunds are handled by Apple rather than the developer. Visit <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>, sign in with your Apple Account and submit a request.</p>
+    <p class="lang-zh">所有 App Store 购买（包括狗牌礼包）都由 <strong>Apple</strong> 处理，因此退款也由 Apple 受理，而不是开发者。请访问 <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>，用你的 Apple 账户登录后提交申请。</p>
   </details>
 
   <details>
     <summary>
-      <span class="lang-en">The game crashes or freezes.</span>
-      <span class="lang-zh">游戏闪退 / 卡死。</span>
+      <span class="lang-en">I found a bug, or the game crashed or froze.</span>
+      <span class="lang-zh">我发现了 bug / 游戏闪退或卡住了。</span>
     </summary>
-    <p class="lang-en">First try force-quitting the app, then relaunch. If the issue persists, restart your device. If still happening, email us with: the moment it crashes (e.g., "during boss fight"), device model, and iOS version. We track all reported crashes and ship fixes in following updates.</p>
-    <p class="lang-zh">先试强制退出 app 后重开。仍有问题可重启设备。还不行就邮件告诉我们：闪退的场景（如"打 boss 时"）、设备型号和 iOS 版本。我们会跟踪所有上报的闪退并在后续更新中修复。</p>
+    <p class="lang-en">Force-quit the app and reopen it; your run is saved automatically, so you'll pick up close to where you were. If it keeps happening, restart your device and make sure the game is up to date. Then email <a href="mailto:contact@zsquad.app">contact@zsquad.app</a> with what you were doing when it happened (e.g. "during a boss fight in co-op"), your device model and iOS version. Screenshots or a screen recording help a lot. We track every report and ship fixes in updates.</p>
+    <p class="lang-zh">先强制退出游戏再重新打开；跑局会自动保存，你会从接近原来的地方继续。如果反复出现，请重启设备并确认游戏已更新到最新版本。然后发邮件到 <a href="mailto:contact@zsquad.app">contact@zsquad.app</a>，告诉我们出问题时你在做什么（例如"双人打 Boss 时"）、设备型号和 iOS 版本。附上截图或录屏会很有帮助。每一份报告我们都会跟进，并在后续更新中修复。</p>
   </details>
 
 </section>
 
-<!-- ═══════════════ PRIVACY ═══════════════ -->
+<!-- ═══════════════ PRIVACY ═══════════════
+     2026-11-03 重写：按 App Store 审核指南 5.1.1 + 常见独立游戏隐私政策结构。
+     事实依据（改游戏里这些行为时必须回来改这里）：
+       建议箱字段      → Services/SuggestionService.swift（CloudKit 公共库 record "Suggestion"）
+       致谢墙同意闸    → Services/SupportLedger.swift wallConsent + LeaderboardService.submitSupport
+       上传分数开关    → Services/PlayerIdentity.swift uploadEnabled（成绩 / 成就 / 致谢墙都受它管）
+       内购            → Services/TipJarService.swift（StoreKit 2 消耗型）
+       联机设备名      → Network/NetworkManager.swift init（随机 "Z Squad ####"，不广播设备名）
+       隐私清单        → PrivacyInfo.xcprivacy（必须与 ASC "App 隐私"问卷 + 本页一致） -->
 <section id="privacy">
   <h2 class="lang-en">Privacy Policy</h2>
   <h2 class="lang-zh">隐私政策</h2>
 
-  <h3 class="lang-en">What we collect</h3>
-  <h3 class="lang-zh">数据收集</h3>
-  <p class="lang-en">Z Squad requires no account creation, sign-up, or sign-in to play, and contains no ads and no third-party tracking. We collect no personal information <strong>except</strong> the limited, identity-linked data described below, which is only created when you choose to use the optional leaderboard and feedback features.</p>
-  <p class="lang-zh">游玩 Z Squad 无需创建账号、注册或登录，游戏内无广告、无第三方追踪。<strong>除</strong>下文所述、仅在你主动使用「排行榜」和「反馈」这两个可选功能时才产生的少量与身份关联的数据外，我们不收集任何个人信息。</p>
+  <p class="policy-meta lang-en">Effective date: November 3, 2026</p>
+  <p class="policy-meta lang-zh">生效日期：2026 年 11 月 3 日</p>
 
-  <h3 class="lang-en">Local data</h3>
-  <h3 class="lang-zh">本地数据</h3>
-  <p class="lang-en">Game progress, settings, and preferences are stored locally on your device using Apple's UserDefaults system. This data never leaves your device. When you uninstall the app, all locally stored data is automatically deleted by iOS.</p>
-  <p class="lang-zh">游戏进度、设置和偏好通过 Apple UserDefaults 存储在本机。这些数据不会离开你的设备。卸载 app 时，所有本地数据会被 iOS 自动删除。</p>
+  <p class="lang-en">This policy explains what information the Z Squad app for iPhone and iPad ("Z Squad", "the game") and this website handle, why, where it is kept, and the choices you have.</p>
+  <p class="lang-zh">本政策说明 iPhone / iPad 游戏 Z Squad（下称"Z Squad"或"本游戏"）及本网站会处理哪些信息、为什么处理、保存在哪里，以及你有哪些选择。</p>
 
-  <h3 class="lang-en">Apple Game Center</h3>
-  <h3 class="lang-zh">Apple Game Center（排行榜）</h3>
-  <p class="lang-en">The optional global leaderboards use Apple's Game Center, which displays your Game Center alias alongside your scores — distance traveled, zombies killed, and their local co-op variants — on public leaderboards. Game Center data is handled by Apple — see <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>. Score uploading is on by default; you can turn it off in <strong>Settings → Upload Scores</strong>, or sign out of Game Center entirely from iOS Settings.</p>
-  <p class="lang-zh">全球排行榜（可选）使用 Apple Game Center，在公开排行榜上展示你的 Game Center 昵称和分数 —— 距离、击杀，以及它们的本地双人版本。Game Center 数据由 Apple 管理，请参考 <a href="https://www.apple.com/legal/privacy/">Apple 隐私政策</a>。分数上传默认开启；你可在 <strong>设置 → Upload Scores</strong> 关闭，或在 iOS 设置里登出 Game Center。</p>
+  <div class="contact-card summary-card">
+    <div class="label">
+      <span class="lang-en">The short version</span>
+      <span class="lang-zh">一句话版本</span>
+    </div>
+    <ul class="policy-list lang-en">
+      <li>No account, no ads, no tracking, no analytics or advertising SDKs, and we never sell your data.</li>
+      <li>Your saves and progress stay on your device.</li>
+      <li>The game only sends information off your device through Apple services — Game Center, the App Store and iCloud — and only when you use those features.</li>
+      <li>Your name appears on the in-game thank-you wall only if you say yes.</li>
+    </ul>
+    <ul class="policy-list lang-zh">
+      <li>不需要账号，没有广告、没有追踪、没有任何数据分析或广告 SDK，我们绝不出售你的数据。</li>
+      <li>你的存档和进度保存在你自己的设备上。</li>
+      <li>游戏只会通过 Apple 的服务（Game Center、App Store、iCloud）把信息发出你的设备，而且只在你使用这些功能时才会发生。</li>
+      <li>只有你明确同意，你的名字才会出现在游戏内的致谢墙上。</li>
+    </ul>
+  </div>
 
-  <h3 class="lang-en">Local 2-player co-op</h3>
-  <h3 class="lang-zh">本地双人联机</h3>
-  <p class="lang-en">Local co-op uses Apple's MultipeerConnectivity framework over Wi-Fi or Bluetooth to connect two devices directly. No game state, account information, or device identifier is transmitted to any external server during a co-op session — all communication is peer-to-peer between the two connected devices on your local network.</p>
-  <p class="lang-zh">本地双人联机使用 Apple 的 MultipeerConnectivity 框架，通过 Wi-Fi 或蓝牙直连两台设备。联机过程中游戏状态、账号信息、设备标识符均不向任何外部服务器传输 — 所有通信只在本地网络内的两台设备之间进行。</p>
+  <h3 class="lang-en">1. Who we are</h3>
+  <h3 class="lang-zh">1. 我们是谁</h3>
+  <p class="lang-en">Z Squad is developed and published by <strong>Yidong Li</strong>, an independent developer ("we", "us"). We are responsible for the information described in this policy. You can reach us at <a href="mailto:contact@zsquad.app">contact@zsquad.app</a>.</p>
+  <p class="lang-zh">Z Squad 由独立开发者 <strong>Yidong Li</strong>（下称"我们"）开发并发行，并对本政策所述信息负责。联系方式：<a href="mailto:contact@zsquad.app">contact@zsquad.app</a>。</p>
 
-  <h3 class="lang-en">In-app purchases (Tip Jar)</h3>
-  <h3 class="lang-zh">内购（打赏）</h3>
-  <p class="lang-en">The optional Tip Jar uses Apple's StoreKit framework. Purchase transactions are handled entirely by Apple — Z Squad does not see, store, or transmit any payment information. We do record the total number of "hearts" your tips have granted, but this total stays on your device (synced via iCloud, see below). <strong>It is never shown to anyone else, and no amount, heart count or ranking of supporters appears anywhere in the game.</strong></p>
-  <p class="lang-zh">可选的 Tip Jar 通过 Apple StoreKit 处理。所有交易完全由 Apple 处理 — Z Squad 不接触、存储或传输任何付款信息。我们会记录你打赏累计获得的爱心总数，但这个总数只保存在你的设备上（通过 iCloud 同步，见下文）。<strong>它不会展示给任何其他人；游戏内不存在任何金额、爱心数或支持者排名。</strong></p>
+  <h3 class="lang-en">2. Information we handle</h3>
+  <h3 class="lang-zh">2. 我们处理哪些信息</h3>
 
-  <h3 class="lang-en">The thank-you wall (opt-in)</h3>
-  <h3 class="lang-zh">致谢页（需你同意）</h3>
-  <p class="lang-en">After a tip we ask, once, whether you'd like your Game Center alias listed on the game's in-app CREDITS page, alongside the artists and sound designers whose work the game uses. <strong>This only ever happens if you say yes.</strong> If you decline — or if you are not signed in to Game Center, or never answer — nothing about you is published, and your tip works exactly the same. The wall is unordered and shows names only: no rank, no heart count, no amount.</p>
-  <p class="lang-zh">打赏之后我们会询问一次：是否愿意把你的 Game Center 昵称列在游戏内的 CREDITS 致谢页上，与游戏所用素材的美术、音效作者并列。<strong>只有你明确同意，这件事才会发生。</strong>如果你拒绝、未登录 Game Center，或从未回答，我们不会公开你的任何信息，打赏效果完全不变。该页面是无序的、只显示名字：没有排名、没有爱心数、没有金额。</p>
-  <p class="lang-en"><strong>Please note:</strong> the wall is backed by Apple's Game Center, and Game Center entries cannot be deleted by the app. So once you opt in, we are unable to remove your name on request. Please only say yes if you are comfortable with your Game Center alias being publicly visible to other players.</p>
-  <p class="lang-zh"><strong>请注意：</strong>该页面的数据由 Apple Game Center 承载，而 Game Center 的记录 app 无法删除。因此一旦你选择同意，我们便无法应要求撤下你的名字。请在确认可以接受"你的 Game Center 昵称对其他玩家公开可见"之后再选择同意。</p>
+  <p class="lang-en"><strong>Game data on your device.</strong> Your saves, home, settings, unlocks, Dog Tag balance, scores waiting to be uploaded, and the transaction IDs of past purchases (kept so each purchase is delivered exactly once) are stored locally on your device. We never receive this data. It is included in your device's own iCloud or computer backup if you use one, and is deleted when you delete the app.</p>
+  <p class="lang-zh"><strong>设备上的游戏数据。</strong>你的存档、家园、设置、解锁内容、狗牌余额、待上传的成绩，以及过往购买的交易编号（用来保证每笔购买只到账一次），都保存在你的设备本地。我们不会收到这些数据。若你开启了 iCloud 或电脑备份，它们会随设备备份一起保存；删除 App 时会一并删除。</p>
 
-  <h3 class="lang-en">iCloud sync (Tip Jar hearts only)</h3>
-  <h3 class="lang-zh">iCloud 同步（仅 Tip Jar 爱心）</h3>
-  <p class="lang-en">The total number of "hearts" you've accumulated through the Tip Jar is synchronized across your devices using Apple's iCloud Key-Value Store. This is the only data we sync, and it never leaves Apple's iCloud infrastructure.</p>
-  <p class="lang-zh">通过 Tip Jar 积累的爱心总数通过 Apple iCloud Key-Value Store 在你的设备间同步。这是我们唯一同步的数据，且仅存留于 Apple iCloud 基础设施内。</p>
+  <p class="lang-en"><strong>Game Center (optional).</strong> If you are signed in to Apple Game Center, the game submits your scores (distance traveled and zombies killed, solo and co-op) to Game Center leaderboards and reports your achievement progress. Other players can see your Game Center nickname next to your scores, according to your Game Center settings. Game Center is run by Apple; we can see leaderboard entries (nickname and score) the same way players do. You can stop all uploads at any time with <strong>Settings → UPLOAD SCORES</strong> in the game, or by signing out of Game Center.</p>
+  <p class="lang-zh"><strong>Game Center（可选）。</strong>如果你登录了 Apple Game Center，游戏会把你的成绩（行进距离与击杀数，含单人和双人）提交到 Game Center 排行榜，并上报成就进度。其他玩家可以看到你的 Game Center 昵称和成绩（具体取决于你的 Game Center 设置）。Game Center 由 Apple 运营；我们和其他玩家一样只能看到排行榜条目（昵称与成绩）。你可以随时在游戏内<strong>设置 → 上传分数</strong>关闭全部上传，或退出 Game Center。</p>
 
-  <h3 class="lang-en">Community suggestions</h3>
-  <h3 class="lang-zh">建议箱（CloudKit）</h3>
-  <p class="lang-en">If you choose to submit feedback through <strong>Community → Leave a Message</strong>, your message is sent through Apple's CloudKit to our app's iCloud container, where only the developer reviews it (via the CloudKit dashboard). Each submission includes the text you wrote, your Game Center alias, the app version, and your device locale, and is linked to your iCloud account. Submissions are not shown to other players inside the game. We may use them to improve the game.</p>
-  <p class="lang-zh">如果你通过 <strong>Community → Leave a Message</strong> 提交反馈，消息会通过 Apple CloudKit 发送到我们 app 的 iCloud 容器，仅由开发者查看（通过 CloudKit 控制台）。每条提交包含你输入的文本、你的 Game Center 昵称、app 版本号和设备语言区域，并与你的 iCloud 账户关联。提交内容不会在游戏内展示给其他玩家。我们可能根据反馈改进游戏。</p>
+  <p class="lang-en"><strong>The supporter thank-you wall (opt-in).</strong> After a purchase, if you're signed in to Game Center, the game asks you once whether you'd like your Game Center nickname listed under SUPPORTERS on the in-game CREDITS page. <strong>Nothing is published unless you tap yes.</strong> If you agree, the game submits a running support total to a Game Center leaderboard that the game does not display; the CREDITS page reads only the names from it and shows names only — no amount, no rank, no totals. If you decline, never answer, or aren't signed in to Game Center, nothing about you is published and your purchase works exactly the same. Your answer is stored on that device only.</p>
+  <p class="lang-zh"><strong>支持者致谢墙（需你同意）。</strong>购买之后，如果你已登录 Game Center，游戏会询问你一次：是否愿意把你的 Game Center 昵称列在游戏内 CREDITS（致谢）页的"支持者"一栏。<strong>只有你点了同意，才会公开任何内容。</strong>同意后，游戏会把一个累计支持值提交到一个游戏内不展示的 Game Center 排行榜；致谢页只从中读取名字，也只显示名字——不显示金额、排名或数值。如果你拒绝、从未回答，或没有登录 Game Center，你的任何信息都不会被公开，购买效果完全一样。你的选择只保存在那台设备上。</p>
 
-  <h3 class="lang-en">Third-party tracking</h3>
-  <h3 class="lang-zh">第三方追踪</h3>
-  <p class="lang-en">Z Squad does <strong>not</strong> use any third-party tracking, analytics, advertising SDKs, or fingerprinting. There are <strong>no ads</strong>.</p>
-  <p class="lang-zh">Z Squad <strong>不</strong>使用任何第三方追踪、数据分析、广告 SDK 或指纹识别。游戏内<strong>无广告</strong>。</p>
+  <p class="lang-en"><strong>In-app purchases.</strong> Dog Tag packs are sold through Apple's App Store using StoreKit. Apple processes the payment; we never receive your name, email, Apple Account or payment details. Your device receives a signed record of the purchase (which pack, a transaction ID and the date), which the game uses on-device to deliver your Dog Tags. Apple gives us aggregated sales reports that don't identify you. The game also keeps a small support total ("hearts") for the thank-you wall; it is synced across your own devices through iCloud key-value storage in your personal iCloud account, which we cannot read.</p>
+  <p class="lang-zh"><strong>App 内购买。</strong>狗牌礼包通过 Apple App Store（StoreKit）出售。付款由 Apple 处理，我们不会收到你的姓名、邮箱、Apple 账户或支付信息。你的设备会收到一份经签名的购买记录（哪个礼包、交易编号和日期），游戏在本机用它发放狗牌。Apple 只向我们提供无法识别个人的汇总销售报表。游戏还会为致谢墙记录一个小小的支持值（"爱心"），它通过你个人 iCloud 账户里的 iCloud 键值存储在你自己的设备之间同步，我们无法读取。</p>
 
-  <h3 class="lang-en">Children's privacy</h3>
-  <h3 class="lang-zh">儿童隐私</h3>
-  <p class="lang-en">Z Squad is rated 12+ on the App Store. We do not knowingly collect personal information from any user, including minors. If you believe a minor has provided personal information through <strong>Community → Leave a Message</strong>, please email us and we will delete it.</p>
-  <p class="lang-zh">Z Squad 在 App Store 上的年龄分级为 12+。我们不会有意收集任何用户的个人信息，包括未成年人。如果你认为未成年人通过 <strong>Community → Leave a Message</strong> 提交了个人信息，请发邮件给我们，我们将删除。</p>
+  <p class="lang-en"><strong>Messages you send from the Campsite.</strong> If you choose <strong>Campsite → LEAVE A MESSAGE</strong>, your message is saved to our app's Apple CloudKit database, where only the developer reads it. Each message includes: the text you wrote; your Game Center nickname (or "anon" if you're not signed in); the app version; and your device's language and region setting (for example "en_US"). CloudKit also attaches an anonymous identifier that Apple generates for our app — it doesn't reveal your Apple Account or email. Messages are never shown to other players. Please don't include personal details you don't want us to have.</p>
+  <p class="lang-zh"><strong>你在营地发送的留言。</strong>如果你使用<strong>营地 → 留个言</strong>，留言会保存到本游戏的 Apple CloudKit 数据库中，只有开发者会阅读。每条留言包含：你写的文字；你的 Game Center 昵称（未登录则为 "anon"）；App 版本号；以及设备的语言与地区设置（例如 "zh_CN"）。CloudKit 还会附带一个 Apple 为本游戏生成的匿名标识——它不会暴露你的 Apple 账户或邮箱。留言永远不会展示给其他玩家。请不要在留言中写入你不希望我们知道的个人信息。</p>
 
-  <h3 class="lang-en">Changes to this policy</h3>
-  <h3 class="lang-zh">政策变更</h3>
-  <p class="lang-en">If we update this policy, the change will be reflected on this page with an updated "Last updated" date at the bottom. For material changes, we may also note them in the App Store "What's New" section of the next release.</p>
-  <p class="lang-zh">如更新本政策，本页底部的"Last updated"日期会同步更新。重大变更也可能在下一版本 App Store 的"What's New"中说明。</p>
+  <p class="lang-en"><strong>Local 2-player co-op.</strong> Co-op connects two nearby devices directly over Wi-Fi and Bluetooth using Apple's MultipeerConnectivity. The "Local Network" permission is used only to find and connect to the other player's device. The two devices exchange gameplay data only (such as positions, actions, squad and loadout). Your device appears to the other one as a random name like "Z Squad 1234", never your device name. Nothing from a co-op session is sent to us or to any server.</p>
+  <p class="lang-zh"><strong>本地双人联机。</strong>联机通过 Apple 的 MultipeerConnectivity，用 Wi-Fi 和蓝牙直接连接附近的两台设备。"本地网络"权限只用于寻找并连接另一位玩家的设备。两台设备之间只交换游戏数据（如位置、动作、小队与装备）。你的设备在对方那里显示为类似 "Z Squad 1234" 的随机名称，绝不使用你的设备名。联机过程中的任何内容都不会发送给我们或任何服务器。</p>
 
-  <h3 class="lang-en">Contact</h3>
-  <h3 class="lang-zh">联系方式</h3>
-  <p class="lang-en">Privacy questions or requests: <a href="mailto:contact@zsquad.app">contact@zsquad.app</a></p>
-  <p class="lang-zh">隐私相关问题或请求：<a href="mailto:contact@zsquad.app">contact@zsquad.app</a></p>
+  <p class="lang-en"><strong>Crash reports.</strong> The game has no crash reporting or analytics of its own. If you have chosen to share analytics with app developers (iOS Settings → Privacy &amp; Security → Analytics &amp; Improvements), Apple may share anonymized crash reports and usage statistics with us, which we use only to fix problems.</p>
+  <p class="lang-zh"><strong>崩溃报告。</strong>游戏本身不带任何崩溃上报或数据分析。如果你选择了与 App 开发者共享分析数据（iOS 设置 → 隐私与安全性 → 分析与改进），Apple 可能会向我们提供匿名的崩溃报告和使用统计，我们只用它来修复问题。</p>
+
+  <p class="lang-en"><strong>Email and this website.</strong> If you email us, we receive your email address and whatever you write; mail to contact@zsquad.app is forwarded by our email provider (Cloudflare) to the inbox we use for support (Google Gmail). This website has no cookies, analytics or ads. It remembers your language choice in your browser's local storage only. Our hosting provider (GitHub Pages) may log technical data such as IP addresses to deliver and secure the site.</p>
+  <p class="lang-zh"><strong>邮件与本网站。</strong>如果你给我们发邮件，我们会收到你的邮箱地址和你写的内容；发往 contact@zsquad.app 的邮件由我们的邮件服务商（Cloudflare）转发到我们处理支持事务的邮箱（Google Gmail）。本网站没有 Cookie、数据分析或广告，只会在你浏览器的本地存储里记住你选的语言。网站托管方（GitHub Pages）可能为提供和保护网站而记录 IP 地址等技术数据。</p>
+
+  <h3 class="lang-en">3. How we use information</h3>
+  <h3 class="lang-zh">3. 我们如何使用这些信息</h3>
+  <p class="lang-en">We use the information above only to run the game's features (leaderboards, achievements, the thank-you wall, delivering purchases, co-op), to read and answer your feedback and support requests, and to fix bugs and improve the game. We do not use it for advertising, profiling or any automated decision-making. Where the law requires a legal basis (for example in the UK), we rely on your consent (the thank-you wall and messages you choose to send — you can withdraw it at any time), on delivering what you bought, and on our legitimate interest in supporting players and improving the game.</p>
+  <p class="lang-zh">我们只把上述信息用于：运行游戏功能（排行榜、成就、致谢墙、发放购买内容、联机）、阅读和回复你的反馈与支持请求、修复 bug 和改进游戏。我们不会把它用于广告、用户画像或任何自动化决策。在法律要求说明处理依据的地区（例如英国），我们的依据是：你的同意（致谢墙，以及你主动发送的留言——你可随时撤回）、向你交付你购买的内容，以及我们为玩家提供支持、改进游戏的正当利益。</p>
+
+  <h3 class="lang-en">4. Where it is stored and who processes it</h3>
+  <h3 class="lang-zh">4. 存储位置与处理方</h3>
+  <p class="lang-en">Game Center, CloudKit, iCloud and App Store data are stored and processed by <strong>Apple</strong> on its servers, which may be located outside your country, under <a href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</a>. Apart from Apple and the email and website providers named above, we use no other service providers, and the game contains no third-party SDKs.</p>
+  <p class="lang-zh">Game Center、CloudKit、iCloud 和 App Store 的数据由 <strong>Apple</strong> 在其服务器上存储和处理，服务器可能位于你所在国家或地区之外，适用 <a href="https://www.apple.com/legal/privacy/">Apple 隐私政策</a>。除 Apple 以及上文提到的邮件和网站服务商外，我们不使用其他任何服务商，游戏内也没有任何第三方 SDK。</p>
+
+  <h3 class="lang-en">5. How long we keep it</h3>
+  <h3 class="lang-zh">5. 保留期限</h3>
+  <ul class="policy-list lang-en">
+    <li><strong>On-device game data:</strong> until you delete the app (or restore your device without it).</li>
+    <li><strong>Game Center scores and achievements:</strong> kept by Apple until you delete them through Apple, or until the leaderboard is reset or retired.</li>
+    <li><strong>Thank-you wall:</strong> until you turn it off in Settings or ask us to remove your name, or the wall is retired.</li>
+    <li><strong>Campsite messages:</strong> until we no longer need them to improve the game, and no longer than 24 months; sooner if you ask us to delete them.</li>
+    <li><strong>Support emails:</strong> as long as needed to handle your request and any follow-up, and no longer than 24 months.</li>
+  </ul>
+  <ul class="policy-list lang-zh">
+    <li><strong>设备上的游戏数据：</strong>保留到你删除 App（或不带它恢复设备）为止。</li>
+    <li><strong>Game Center 成绩与成就：</strong>由 Apple 保存，直到你通过 Apple 删除，或排行榜被重置 / 停用。</li>
+    <li><strong>致谢墙：</strong>保留到你在设置里关掉、要求我们移除你的名字，或致谢墙停用为止。</li>
+    <li><strong>营地留言：</strong>保留到我们不再需要它来改进游戏为止，最长不超过 24 个月；你要求删除时会提前删除。</li>
+    <li><strong>支持邮件：</strong>保留到处理完你的请求及后续沟通为止，最长不超过 24 个月。</li>
+  </ul>
+
+  <h3 class="lang-en">6. What we don't do</h3>
+  <h3 class="lang-zh">6. 我们不做的事</h3>
+  <ul class="policy-list lang-en">
+    <li>We don't sell, rent or trade your information, and we don't share it for advertising.</li>
+    <li>We don't track you across other companies' apps or websites, and the game never asks for tracking permission.</li>
+    <li>No ads, no analytics or advertising SDKs, no fingerprinting.</li>
+    <li>No account or sign-up of our own.</li>
+    <li>No access to your location, contacts, photos, camera or microphone.</li>
+  </ul>
+  <ul class="policy-list lang-zh">
+    <li>我们不出售、出租或交易你的信息，也不会为广告目的共享。</li>
+    <li>我们不会跨其他公司的 App 或网站追踪你，游戏也从不申请追踪权限。</li>
+    <li>没有广告、没有数据分析或广告 SDK、不做设备指纹识别。</li>
+    <li>没有我们自己的账号或注册。</li>
+    <li>不访问你的位置、通讯录、照片、相机或麦克风。</li>
+  </ul>
+  <p class="lang-en">We only disclose information if required by law. The only things other players can see are your Game Center nickname and scores on leaderboards (per your Game Center settings) and, if you opted in, your name on the thank-you wall.</p>
+  <p class="lang-zh">只有在法律要求时我们才会披露信息。其他玩家能看到的只有：排行榜上你的 Game Center 昵称和成绩（取决于你的 Game Center 设置），以及——如果你同意了——致谢墙上你的名字。</p>
+
+  <h3 class="lang-en">7. Your choices and rights</h3>
+  <h3 class="lang-zh">7. 你的选择与权利</h3>
+  <ul class="policy-list lang-en">
+    <li><strong>Stop uploading scores:</strong> turn off <strong>Settings → UPLOAD SCORES</strong> in the game, or sign out in iOS Settings → Game Center. This also stops the game from sending your support total.</li>
+    <li><strong>Manage or delete Game Center data:</strong> change your nickname and profile privacy in iOS Settings → Game Center; request a copy or deletion of your Apple data at <a href="https://privacy.apple.com">privacy.apple.com</a>.</li>
+    <li><strong>Leave the thank-you wall:</strong> in the game, go to Settings and turn off NAME ON CREDITS. You can turn it back on any time. If you can't reach the game any more, email us your Game Center nickname and we'll remove it.</li>
+    <li><strong>Delete a Campsite message:</strong> email us your Game Center nickname and roughly when you sent it, and we'll delete it.</li>
+    <li><strong>Delete everything on your device:</strong> delete the app.</li>
+  </ul>
+  <ul class="policy-list lang-zh">
+    <li><strong>停止上传成绩：</strong>在游戏内关闭<strong>设置 → 上传分数</strong>，或在 iOS 设置 → Game Center 中退出登录。这也会让游戏停止提交你的支持值。</li>
+    <li><strong>管理或删除 Game Center 数据：</strong>在 iOS 设置 → Game Center 中修改昵称和资料隐私；在 <a href="https://privacy.apple.com">privacy.apple.com</a> 申请获取或删除你的 Apple 数据。</li>
+    <li><strong>退出致谢墙：</strong>在游戏的设置里关掉"致谢页显示我的名字"，随时可以再打开。如果你已经打不开游戏，把 Game Center 昵称发邮件给我们，我们会将它移除。</li>
+    <li><strong>删除营地留言：</strong>把你的 Game Center 昵称和大致发送时间发邮件给我们，我们会删除。</li>
+    <li><strong>删除设备上的全部数据：</strong>删除 App 即可。</li>
+  </ul>
+  <p class="lang-en">Depending on where you live (for example the UK, California, Japan or Brazil), you may have the right to access, correct or delete your personal information, to object to or restrict its use, to withdraw consent, and to complain to your local data protection authority (in the UK, the Information Commissioner's Office). Email <a href="mailto:contact@zsquad.app">contact@zsquad.app</a> to make any request — we'll respond within 30 days. Because the game has no accounts, we may ask for details such as your Game Center nickname or when you sent a message so we can find the right records. We won't treat you differently for exercising these rights.</p>
+  <p class="lang-zh">根据你所在的地区（例如英国、美国加州、日本或巴西），你可能有权访问、更正或删除你的个人信息，反对或限制其使用，撤回同意，以及向当地数据保护机构投诉（在英国为信息专员办公室 ICO）。如需行使任何权利，请发邮件至 <a href="mailto:contact@zsquad.app">contact@zsquad.app</a>，我们会在 30 天内回复。由于游戏没有账号体系，我们可能需要你提供 Game Center 昵称或留言发送时间等信息来找到对应记录。你行使这些权利不会受到任何区别对待。</p>
+
+  <h3 class="lang-en">8. Children</h3>
+  <h3 class="lang-zh">8. 儿童隐私</h3>
+  <p class="lang-en">Z Squad is rated 12+ on the App Store and is not directed to children under 13. We do not knowingly collect personal information from children under 13 (or the minimum age in your country). Purchases by younger players can be controlled with Apple's Ask to Buy and Screen Time. If you believe a child has sent us personal information — for example in a Campsite message — please email us and we will delete it.</p>
+  <p class="lang-zh">Z Squad 在 App Store 的年龄分级为 12+，并非面向 13 岁以下儿童。我们不会有意收集 13 岁以下（或你所在国家 / 地区规定的最低年龄以下）儿童的个人信息。低龄玩家的购买可以通过 Apple 的"购买前询问"和"屏幕使用时间"来管理。如果你认为有儿童向我们发送了个人信息（例如在营地留言里），请发邮件告诉我们，我们会删除。</p>
+
+  <h3 class="lang-en">9. Security</h3>
+  <h3 class="lang-zh">9. 安全</h3>
+  <p class="lang-en">Data sent to Game Center, CloudKit, iCloud and the App Store travels over Apple's encrypted connections and is stored on Apple's infrastructure. Access to Campsite messages is limited to the developer. No method of storage or transmission is perfectly secure, but we keep what we hold to a minimum.</p>
+  <p class="lang-zh">发送到 Game Center、CloudKit、iCloud 和 App Store 的数据都经由 Apple 的加密连接传输，并存储在 Apple 的基础设施上。营地留言只有开发者可以访问。没有哪种存储或传输方式是绝对安全的，但我们会把持有的信息控制在最少。</p>
+
+  <h3 class="lang-en">10. Changes to this policy</h3>
+  <h3 class="lang-zh">10. 政策变更</h3>
+  <p class="lang-en">If we change this policy, we'll post the new version on this page and update the effective date above. If a change affects how your information is used in a significant way, we'll also mention it in the App Store release notes for that update and, where appropriate, ask for your consent again.</p>
+  <p class="lang-zh">如果本政策有变更，我们会在本页发布新版本并更新上方的生效日期。如果变更会显著影响你的信息被使用的方式，我们还会在该版本的 App Store 更新说明中提及，必要时重新征求你的同意。</p>
+
+  <h3 class="lang-en">11. Contact</h3>
+  <h3 class="lang-zh">11. 联系我们</h3>
+  <p class="lang-en">Questions or requests about privacy: Yidong Li, <a href="mailto:contact@zsquad.app">contact@zsquad.app</a></p>
+  <p class="lang-zh">隐私相关问题或请求：Yidong Li，<a href="mailto:contact@zsquad.app">contact@zsquad.app</a></p>
 </section>
 
 <!-- ═══════════════ ABOUT ═══════════════ -->
 <section id="about">
   <h2 class="lang-en">About</h2>
   <h2 class="lang-zh">关于</h2>
-  <p class="lang-en">Z Squad is a pixel-art zombie survival runner for iOS, built solo by a developer who loves the zombie genre. Free, no ads, no paywalls. Solo or local 2-player couch co-op.</p>
-  <p class="lang-zh">Z Squad 是一款像素风末日生存跑酷 iOS 游戏，由一位热爱僵尸题材的开发者独立完成。免费，无广告，无付费墙。支持单人或本地双人沙发联机。</p>
+  <p class="lang-en">Z Squad is a pixel-art zombie survival runner for iOS, built solo by a developer who loves the zombie genre. Free-to-play, no ads, with optional in-app purchases. Solo or local 2-player co-op on two devices.</p>
+  <p class="lang-zh">Z Squad 是一款像素风末日生存跑酷 iOS 游戏，由一位热爱僵尸题材的开发者独立完成。免费畅玩，无广告，含可选内购。支持单人或本地双人沙发联机。</p>
   <p class="lang-en">Built with Swift &amp; SpriteKit. Currently in TestFlight, launching on the App Store soon.</p>
   <p class="lang-zh">用 Swift 和 SpriteKit 开发，目前 TestFlight 公测中，即将正式上架 App Store。</p>
 </section>
@@ -582,8 +741,56 @@
 <section id="press">
   <h2 class="lang-en">Press</h2>
   <h2 class="lang-zh">媒体</h2>
-  <p class="lang-en">A full press kit — factsheet, screenshots, logos, and trailer downloads — will be published here at launch. Writing about Z Squad before then? Email <a href="mailto:contact@zsquad.app">contact@zsquad.app</a> and we'll send materials directly.</p>
-  <p class="lang-zh">完整媒体资料包（factsheet、截图、logo、宣传片下载）将在上架时发布于此。想提前报道 Z Squad？邮件 <a href="mailto:contact@zsquad.app">contact@zsquad.app</a>，我们直接把素材发给你。</p>
+
+  <p class="lang-en">Z Squad is a free pixel-art zombie roguelike runner for iOS — recruit your squad, loot the road, and survive the horde, solo or in local co-op on two devices. Built by one developer who loves everything zombie and pixel art in equal measure.</p>
+  <p class="lang-zh">Z Squad（僵尸小队）是一款 iOS 上的免费像素僵尸肉鸽跑酷——招募你的小队、搜刮沿途、抵挡尸潮，单人或两台设备本地双人联机。由一位同样热爱僵尸题材与像素美术的独立开发者独立完成。</p>
+
+  <h3 class="lang-en">Fact sheet</h3>
+  <h3 class="lang-zh">基本信息</h3>
+  <table class="pk-facts lang-en">
+    <tr><td class="k">Title</td><td class="v">Z Squad&nbsp; (简体中文: 僵尸小队)</td></tr>
+    <tr><td class="k">Developer</td><td class="v">Yidong Li — solo developer</td></tr>
+    <tr><td class="k">Platform</td><td class="v">iOS 18.0+ · iPhone &amp; iPad</td></tr>
+    <tr><td class="k">Genre</td><td class="v">Pixel zombie roguelike runner</td></tr>
+    <tr><td class="k">Modes</td><td class="v">Single-player · local 2-player co-op (offline)</td></tr>
+    <tr><td class="k">Price</td><td class="v">Free-to-play — optional in-app purchases (Dog Tag packs)</td></tr>
+    <tr><td class="k">Languages</td><td class="v">English · Simplified Chinese</td></tr>
+    <tr><td class="k">Release</td><td class="v">December 3, 2026 — App Store</td></tr>
+    <tr><td class="k">App Store</td><td class="v"><a href="https://apps.apple.com/app/id6763394067">apps.apple.com/app/id6763394067</a></td></tr>
+    <tr><td class="k">Press contact</td><td class="v"><a href="mailto:contact@zsquad.app">contact@zsquad.app</a></td></tr>
+  </table>
+  <table class="pk-facts lang-zh">
+    <tr><td class="k">名称</td><td class="v">僵尸小队&nbsp; (English: Z Squad)</td></tr>
+    <tr><td class="k">开发者</td><td class="v">Yidong Li — 独立开发者</td></tr>
+    <tr><td class="k">平台</td><td class="v">iOS 18.0+ · iPhone 和 iPad</td></tr>
+    <tr><td class="k">类型</td><td class="v">像素僵尸肉鸽跑酷</td></tr>
+    <tr><td class="k">模式</td><td class="v">单人 · 本地双人联机（两台设备，离线）</td></tr>
+    <tr><td class="k">价格</td><td class="v">免费畅玩 — 含可选内购（狗牌礼包）</td></tr>
+    <tr><td class="k">语言</td><td class="v">英文 · 简体中文</td></tr>
+    <tr><td class="k">发布</td><td class="v">2026 年 12 月 3 日 — App Store</td></tr>
+    <tr><td class="k">App Store</td><td class="v"><a href="https://apps.apple.com/app/id6763394067">apps.apple.com/app/id6763394067</a></td></tr>
+    <tr><td class="k">媒体联系</td><td class="v"><a href="mailto:contact@zsquad.app">contact@zsquad.app</a></td></tr>
+  </table>
+
+  <h3 class="lang-en">Key features</h3>
+  <h3 class="lang-zh">核心特色</h3>
+  <ul class="pk-feat lang-en">
+    <li>Solo or local co-op — survive with a friend on a second device, fully offline.</li>
+    <li>100+ roguelike events with choices that can cost or save a squadmate.</li>
+    <li>20+ enemies and set-piece boss fights.</li>
+    <li>15+ recruitable companions, each with their own skills.</li>
+    <li>Free-to-play — no ads. Optional dog-tag packs to gear up faster.</li>
+  </ul>
+  <ul class="pk-feat lang-zh">
+    <li>单人或本地双人联机——与朋友各持一台设备，完全离线。</li>
+    <li>100+ 肉鸽抉择事件，每个选择都可能牺牲或救下一名队友。</li>
+    <li>20+ 种敌人与关底 Boss 战。</li>
+    <li>15+ 名可招募同伴，各有技能。</li>
+    <li>免费畅玩——无广告。可选狗牌礼包，更快武装。</li>
+  </ul>
+
+  <p class="lang-en">High-resolution screenshots, the trailer, and a logo pack are available on request now, and will be linked here for direct download at launch. Writing about Z Squad? Email <a href="mailto:contact@zsquad.app">contact@zsquad.app</a> — press &amp; creators can also request App Store promo codes.</p>
+  <p class="lang-zh">高清截图、宣传片与 logo 素材包现可来邮索取，并将在上架时于此提供直接下载。想报道 Z Squad？邮件 <a href="mailto:contact@zsquad.app">contact@zsquad.app</a>——媒体与创作者也可索取 App Store 兑换码。</p>
 </section>
 
 <footer>
@@ -591,7 +798,7 @@
     <a href="https://x.com/ZSquadGame">X</a> · <a href="https://youtube.com/@ZSquadGame">YouTube</a> · <a href="https://discord.gg/TrDh6J98m">Discord</a> · <a href="https://reddit.com/user/ZSquadGame">Reddit</a>
   </div>
   <div>© 2026 Yidong Li · Z Squad</div>
-  <div class="stack">Last updated: 2026-07-21</div>
+  <div class="stack">Last updated: 2026-11-03</div>
 </footer>
 
 </div>
