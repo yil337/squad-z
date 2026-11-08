@@ -859,25 +859,27 @@
   // 坐着的人 = 游戏里的随从服装（原创角色；像知名作品的几个不放）。每人全页只出现一次，座位多于人就空着。
   var PEOPLE_SMALL = ['Assault', 'Sniper', 'Medic', 'Comms', 'Demo', 'PeaceElite', 'Air-Drone', 'Hanc'];
   var PEOPLE_BIG = ['Zombie-Scavenger', 'Ganki', 'FlameOn', 'SpaceHunter', 'Dark', 'Grenader', 'Sword', 'Boss', 'Enjineer', 'Trader', 'Commander'];
+  // P_<名>_<朝向>_sit = 和游戏里坐着的住户一样：坐姿身体（游戏的坐姿腿）+ 服装 idle，中心对齐叠起来
+  // （生成脚本 hi_zombie/tools/site_seated_people.py）。每帧宽高 = 身体 / 服装取大，画布中心 = 人的中心。
   PEOPLE_SMALL.concat(PEOPLE_BIG).forEach(function(n) {
-    var big = PEOPLE_BIG.indexOf(n) >= 0, w = big ? 26 : 14, h = big ? 32 : 20;
-    S['p_' + n + '_r'] = ['P_' + n + '_side', w * 6, h, 6, 0.9];
-    S['p_' + n + '_l'] = ['P_' + n + '_side_left', w * 6, h, 6, 0.9];
+    var big = PEOPLE_BIG.indexOf(n) >= 0, w = big ? 26 : 14, h = big ? 32 : 26;
+    S['p_' + n + '_r'] = ['P_' + n + '_side_sit', w * 6, h, 6, 0.9];
+    S['p_' + n + '_l'] = ['P_' + n + '_side_left_sit', w * 6, h, 6, 0.9];
   });
   // 一组小场景：[key, x, y(顶边), 左右翻]，单位 = 原图像素。
-  // ['seat', 中心x, 座位底边y, 朝左] = 坐一个人：照游戏，人的中心比座位底边高 10px、画在座位前面。
+  // ['seat', 中心x, 座位贴图底边y, 朝左] = 坐一个人。摆位同游戏：人的中心 = 座位底边往上 10px（木墩底边 = y + 9，长椅 = y + 14）。
   var VIGNETTES = [
     [['goal', 0, 0], ['ball', 6, 27], ['dog', 22, 25]],
-    [['logseat', 0, 18], ['seat', 9, 27], ['campfire', 21, 12], ['flame', 26, -4], ['logseat', 47, 18], ['seat', 56, 27, 1]],
+    [['logseat', 0, 18], ['seat', 9, 27, 0], ['campfire', 21, 12], ['flame', 26, -4], ['logseat', 47, 18], ['seat', 56, 27, 1]],
     [['bed', 0, 8], ['corn', 2, -4], ['tomato', 12, 2], ['pumpkin', 22, 10]],
-    [['bench', 0, 6], ['seat', 6, 20], ['seat', 20, 20, 1]],
+    [['logseat', 0, 18], ['seat', 9, 27, 0], ['logseat', 34, 18], ['seat', 43, 27, 1]],
     [['coop', 0, 0], ['chicken', 27, 18], ['chicken', 9, 28, 1]],
-    [['logseat', 0, 10], ['seat', 9, 19], ['bush1', 21, 8]],
+    [['logseat', 0, 10], ['seat', 9, 19, 0], ['bush1', 21, 8]],
     [['fruit', 0, 0], ['shroom', 30, 36]],
-    [['logseat', 0, 14], ['seat', 9, 23], ['radio', 20, 3]],
+    [['logseat', 0, 14], ['seat', 9, 23, 0], ['radio', 20, 3]],
     [['swing', 0, 0]],
     [['well', 0, 0], ['bird', 28, 20]],
-    [['bench', 0, 6], ['seat', 7, 20], ['cat', 11, 0]],
+    [['bench', 0, 6], ['seat', 8, 20, 0], ['cat', 27, 9]],
     [['punch', 2, 0], ['stump', 14, 8]],
     [['oak', 0, 0]],
     [['pine', 4, 0], ['bush2', 0, 23]],
@@ -916,7 +918,7 @@
   function sprite(parent, k, x, y, s, flip, bounds) {
     var d = S[k], w = fw(k) * s, h = d[2] * s;
     var o = document.createElement('div'); o.className = 'yi';
-    var z = Math.round(y + h) + (k === 'flame' ? 60 : 0);        // 火苗画在火堆上
+    var z = Math.round(y + h) + (k === 'flame' ? 60 : k.indexOf('p_') === 0 ? 4 * s : 0);   // 火苗画在火堆上；人画在座位前
     o.style.cssText = 'left:' + x + 'px;top:' + y + 'px;width:' + w + 'px;height:' + h + 'px;z-index:' + z;
     var i = document.createElement('i'); o.appendChild(i);
     setSheet(i, k, s, d[3] > 1 ? d[4] : 0);
@@ -1044,8 +1046,8 @@
           x0 = side[0] + r() * (room - w);
           items.forEach(function(it) { sprite(yard, it[0], Math.round(x0 + (it[1] - minX) * s), Math.round(y + (it[2] - top0) * s), s, it[3], side); });
           pool.splice(0, used);
-          vi++;
         }
+        vi++;                                            // 放不下（太宽）就换下一组，别卡在同一组上
         var fillers = 5 + Math.floor(r() * 4);           // 场景周围和下方空地撒草和花
         for (var q = 0; q < fillers; q++) {
           var k = FILLERS[Math.floor(r() * FILLERS.length)], kw = fw(k) * s;
