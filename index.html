@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Z Squad — Support & Privacy</title>
-<meta name="description" content="Official support and privacy information for Z Squad, a pixel-art zombie roguelike runner with local co-op for iOS by Yidong Li.">
+<title>Z Squad — Zombie Roguelite Runner for iPhone & iPad</title>
+<meta name="description" content="Z Squad is a free top-down zombie roguelite runner for iPhone and iPad. Recruit a squad, outrun the horde, build a home. Solo or local co-op, offline, no ads. Coming December 3, 2026.">
 
 <!-- ── Identity / sharing meta（icon.png = 游戏 1024² App Icon，放在站点 repo 根目录）── -->
 <link rel="icon" type="image/png" href="/icon.png">
@@ -12,16 +12,16 @@
 <link rel="canonical" href="https://zsquad.app/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Z Squad">
-<meta property="og:title" content="Z Squad — Pixel Zombie Roguelike · Co-op">
-<meta property="og:description" content="Free-to-play pixel-art zombie roguelike runner for iOS. Solo or local 2-player co-op on two devices. No ads.">
+<meta property="og:title" content="Z Squad — Zombie Roguelite Runner">
+<meta property="og:description" content="Free top-down zombie roguelite runner for iPhone and iPad. Recruit a squad, outrun the horde, build a home. Solo or local co-op, no ads.">
 <meta property="og:url" content="https://zsquad.app/">
-<meta property="og:image" content="https://zsquad.app/icon.png">
-<meta property="og:image:width" content="1024">
-<meta property="og:image:height" content="1024">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Z Squad — Pixel Zombie Roguelike · Co-op">
-<meta name="twitter:description" content="Free-to-play pixel-art zombie roguelike runner for iOS. Solo or local 2-player co-op on two devices. No ads.">
-<meta name="twitter:image" content="https://zsquad.app/icon.png">
+<meta property="og:image" content="https://zsquad.app/assets/hero.png">
+<meta property="og:image:width" content="1311">
+<meta property="og:image:height" content="737">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Z Squad — Zombie Roguelite Runner">
+<meta name="twitter:description" content="Free top-down zombie roguelite runner for iPhone and iPad. Recruit a squad, outrun the horde, build a home. Solo or local co-op, no ads.">
+<meta name="twitter:image" content="https://zsquad.app/assets/hero.png">
 <!-- Smart App Banner：app 未上架时 Safari 静默不显示，上架后自动出现"打开 App Store"顶栏，无需任何改动 -->
 <meta name="apple-itunes-app" content="app-id=6763394067">
 <script type="application/ld+json">
@@ -32,7 +32,7 @@
   "alternateName": "僵尸小队",
   "url": "https://zsquad.app/",
   "image": "https://zsquad.app/icon.png",
-  "description": "Free-to-play pixel-art zombie roguelike runner for iOS. Solo or local 2-player co-op on two devices. No ads.",
+  "description": "Free top-down zombie roguelite runner for iPhone and iPad. Recruit a squad, outrun the horde, build a home. Solo or local co-op, no ads.",
   "operatingSystem": "iOS",
   "applicationCategory": "GameApplication",
   "genre": ["Roguelike", "Action", "Survival"],
@@ -41,359 +41,311 @@
 }
 </script>
 <style>
+  /* 2026-11-07 用户：整站换成家园夜景风格（篝火、彩灯、木牌、围栏）。贴图全是游戏原图，放大一律最近邻。 */
+  @font-face {
+    font-family: 'ZPixel';
+    src: url('/fonts/fusion-pixel-zsquad.woff') format('woff');
+    font-display: swap;
+  }
   :root {
-    --bg:        #fbfbfd;
-    --paper:     #ffffff;
-    --ink:       #1d1d1f;
-    --ink-soft:  #515154;
-    --ink-mute:  #86868b;
-    --rule:      #d2d2d7;
-    --rule-soft: #e8e8ed;
-    --accent:    #0066cc;
-    --accent-hover: #0a84ff;
-    --font-en:   -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display',
-                 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --font-zh:   -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB',
-                 'Microsoft YaHei', sans-serif;
+    --night:      #120d14;
+    --outline:    #1e120a;
+    --board:      #2b1e18;
+    --board-seam: #22170f;
+    --board-rim:  #4a3324;
+    --plank:      #8c6644;
+    --plank-hi:   #b88a5c;
+    --plank-lo:   #5a3d28;
+    --cream:      #f3e6c8;
+    --cream-soft: #d8c7a4;
+    --cream-mute: #a8957a;
+    --fire:       #f2a33a;
+    --fire-hot:   #ffd36b;
+    --ember:      #d9542c;
+    --font:       'ZPixel', ui-monospace, 'PingFang SC', monospace;
   }
 
   * { box-sizing: border-box; }
-  html { font-size: 17px; scroll-behavior: smooth; }
+  html, body { overflow-x: clip; }          /* 围栏铺满屏宽时不出横向滚动条（clip 不破坏顶栏 sticky） */
+  html { font-size: 18px; scroll-behavior: smooth; scroll-padding-top: 96px; }
   body {
     margin: 0;
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--font-en);
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    color: var(--cream);
+    font-family: var(--font);
+    line-height: 1.7;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: unset;
+    background-color: var(--night);
+    background-image:
+      radial-gradient(ellipse 70% 45% at 50% 18%, rgba(242, 140, 40, 0.20), rgba(242, 140, 40, 0) 70%),
+      linear-gradient(rgba(12, 9, 16, 0.30), rgba(12, 9, 16, 0.45)),
+      url('/assets/grass.png');
+    background-size: auto, auto, 48px 48px;
+    background-attachment: scroll;
+    image-rendering: pixelated;
   }
-  body.lang-zh { font-family: var(--font-zh); }
+  img, video { image-rendering: pixelated; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
-  /* Language visibility */
   body.lang-en .lang-zh { display: none; }
   body.lang-zh .lang-en { display: none; }
 
-  /* ─── Top language toggle ─── */
-  .lang-toggle {
-    position: fixed;
-    top: 22px;
-    right: 22px;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.72);
-    -webkit-backdrop-filter: saturate(180%) blur(20px);
-    backdrop-filter: saturate(180%) blur(20px);
-    border: 1px solid rgba(0, 0, 0, 0.08);
-    border-radius: 980px;
-    padding: 3px;
-    display: flex;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  /* ─── 顶栏 + 彩灯 ─── */
+  .topbar {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; align-items: center; gap: 24px;
+    padding: 12px 24px;
+    background: var(--night);
+    border-bottom: 4px solid var(--outline);
   }
+  .brand {
+    color: var(--fire-hot); font-size: 24px; letter-spacing: 2px; text-decoration: none;
+    text-shadow: 3px 3px 0 var(--outline);
+  }
+  .brand:hover { color: #fff1b8; text-decoration: none; }
+  .navlinks { display: flex; gap: 20px; flex: 1; }
+  .navlinks a { color: var(--cream-soft); text-decoration: none; }
+  .navlinks a:hover { color: var(--fire-hot); text-decoration: none; }
+  .lights {
+    position: sticky; top: 60px; z-index: 49; height: 36px; margin-top: -4px;
+    background: url('/assets/lights.png') repeat-x 0 0 / 288px 36px;
+    animation: twinkle 1.6s steps(1) infinite;
+    pointer-events: none;
+  }
+  @keyframes twinkle { 50% { background-position: -144px 0; } }
+
+  .lang-toggle { display: flex; gap: 6px; }
   .lang-toggle button {
-    background: transparent;
-    border: none;
-    color: var(--ink-soft);
-    padding: 6px 16px;
-    border-radius: 980px;
-    cursor: pointer;
-    font: 500 13px/1 var(--font-en);
-    transition: all 0.18s ease;
+    font: 18px/1 var(--font); color: var(--cream-soft); cursor: pointer;
+    padding: 6px 12px; background: var(--plank-lo);
+    border: 3px solid var(--outline);
   }
-  .lang-toggle button:hover { color: var(--ink); }
-  .lang-toggle button.active {
-    background: var(--ink);
-    color: white;
-  }
-  .lang-toggle button[data-lang="zh"] { font-family: var(--font-zh); }
+  .lang-toggle button.active { background: var(--plank); color: #fff6dc; box-shadow: inset -3px -3px 0 var(--plank-lo), inset 3px 3px 0 var(--plank-hi); }
 
-  /* ─── Container ─── */
-  .container {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 96px 32px 120px;
-  }
+  /* ─── 版心 ─── */
+  .container { max-width: 1000px; margin: 0 auto; padding: 32px 24px 48px; }
 
-  /* ─── Header ─── */
-  header {
-    text-align: center;
-    margin-bottom: 72px;
+  /* ─── 首屏 ─── */
+  header { text-align: center; margin: 8px 0 24px; }
+  .hero-frame {
+    display: inline-block; max-width: 100%; line-height: 0;
+    border: 4px solid var(--outline);
+    box-shadow: 0 0 0 6px var(--plank), 0 0 0 10px var(--outline), 0 0 80px 10px rgba(242, 140, 40, 0.22);
   }
-  h1 {
-    font-size: 56px;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    margin: 0 0 12px;
-    line-height: 1.08;
-    color: var(--ink);
-  }
+  .hero { width: 100%; height: auto; display: block; }
   header .tagline {
-    font-size: 21px;
-    font-weight: 400;
-    color: var(--ink-mute);
-    margin: 0;
-    letter-spacing: -0.003em;
+    margin: 36px 0 8px; font-size: 28px; line-height: 1.4; color: var(--fire-hot);
+    text-shadow: 3px 3px 0 var(--outline);
   }
-  header .listed {
-    font-size: 13px;
-    color: var(--ink-mute);
-    margin: 16px 0 0;
-    letter-spacing: 0;
+  header .listed { margin: 0; color: var(--cream-soft); }
+  .cta { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; margin-top: 28px; }
+  .btn {
+    display: inline-block; padding: 12px 22px; color: #fff6dc; text-decoration: none;
+    background: var(--plank); border: 4px solid var(--outline);
+    box-shadow: inset -4px -4px 0 var(--plank-lo), inset 4px 4px 0 var(--plank-hi), 0 4px 0 var(--outline);
+    text-shadow: 2px 2px 0 var(--outline);
   }
-  header .listed em {
-    font-style: normal;
-    color: var(--ink-soft);
-    font-weight: 500;
-  }
+  .btn:hover { color: #fff6dc; text-decoration: none; transform: translateY(-2px); filter: brightness(1.08); }
+  .btn:active { transform: translateY(2px); box-shadow: inset 4px 4px 0 var(--plank-lo), 0 0 0 var(--outline); }
+  .btn-fire { background: var(--ember); box-shadow: inset -4px -4px 0 #9c3418, inset 4px 4px 0 var(--fire), 0 4px 0 var(--outline); }
 
-  /* ─── Section ─── */
+  /* ─── 每一块 = 一块木牌 ─── */
   section {
-    margin-top: 88px;
+    position: relative; margin: 56px 0 0; padding: 48px 36px 32px;
+    background: repeating-linear-gradient(180deg, var(--board) 0 45px, var(--board-seam) 45px 48px);
+    border: 4px solid var(--outline);
+    box-shadow: inset 0 0 0 4px var(--board-rim), 0 8px 0 rgba(0, 0, 0, 0.45);
   }
-  section:first-of-type { margin-top: 0; }
-
+  section::before, section::after {           /* 钉子 */
+    content: ""; position: absolute; top: 14px; width: 8px; height: 8px;
+    background: #b8b09c; box-shadow: 2px 2px 0 var(--outline);
+  }
+  section::before { left: 14px; }
+  section::after { right: 14px; }
   h2 {
-    font-size: 32px;
-    font-weight: 600;
-    letter-spacing: -0.018em;
-    margin: 0 0 28px;
-    color: var(--ink);
+    display: inline-block; margin: -76px 0 20px; padding: 6px 20px;
+    font-size: 24px; font-weight: normal; color: #fff6dc; line-height: 1.5;
+    background: var(--plank); border: 4px solid var(--outline);
+    box-shadow: inset -4px -4px 0 var(--plank-lo), inset 4px 4px 0 var(--plank-hi);
+    text-shadow: 2px 2px 0 var(--outline);
+  }
+  h3 { margin: 32px 0 10px; font-size: 20px; font-weight: normal; color: var(--fire-hot); line-height: 1.5; }
+  p { margin: 0 0 16px; color: var(--cream-soft); }
+  strong { color: var(--cream); font-weight: normal; }
+  em { font-style: normal; color: var(--cream); }
+  a { color: var(--fire-hot); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; }
+  a:hover { color: #fff1b8; }
+
+  .fence {                                    /* 一排院子围栏，铺满整个屏宽 */
+    height: 48px; width: 100vw; margin: 44px 0 -8px calc(50% - 50vw);
+  }
+  .fence::before {                            /* 压暗只给栅栏本身，脚下的草和小动物另算 */
+    content: ""; position: absolute; inset: 0;
+    background: url('/assets/fence.png') repeat-x 0 0 / 192px 48px;
+    filter: brightness(0.74);
   }
 
-  h3 {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: -0.003em;
-    margin: 36px 0 10px;
-    color: var(--ink);
-  }
+  /* ─── 影像 ─── */
+  .video-frame { line-height: 0; border: 4px solid var(--outline); box-shadow: 0 0 0 4px var(--plank-lo); background: #000; }
+  .video-frame video { width: 100%; height: auto; display: block; }
+  .caption { margin-top: 14px; color: var(--cream-mute); }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .gallery a.shot { display: block; line-height: 0; border: 4px solid var(--outline); box-shadow: 0 0 0 3px var(--plank-lo); }
+  .gallery a.shot:hover { box-shadow: 0 0 0 3px var(--fire); }
+  .gallery img { width: 100%; height: auto; display: block; image-rendering: auto; }
+  .lightbox { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center;
+    background: rgba(8, 6, 10, 0.92); cursor: zoom-out; padding: 24px; }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 100%; max-height: 100%; border: 4px solid var(--outline); box-shadow: 0 0 0 4px var(--plank); image-rendering: auto; }
 
-  p {
-    font-size: 17px;
-    color: var(--ink-soft);
-    margin: 0 0 16px;
-    line-height: 1.62;
-    letter-spacing: -0.003em;
-  }
-  body.lang-zh p,
-  body.lang-zh details summary,
-  body.lang-zh h1,
-  body.lang-zh h2,
-  body.lang-zh h3 {
-    letter-spacing: 0;
-  }
-
-  strong { color: var(--ink); font-weight: 600; }
-  em { font-style: italic; }
-
-  a {
-    color: var(--accent);
-    text-decoration: none;
-    transition: color 0.15s;
-  }
-  a:hover { color: var(--accent-hover); text-decoration: underline; text-underline-offset: 3px; }
-
-  /* ─── Contact card (Apple-style) ─── */
+  /* ─── 联系卡 ─── */
   .contact-card {
-    background: var(--paper);
-    border: 1px solid var(--rule-soft);
-    border-radius: 18px;
-    padding: 28px 32px;
-    margin: 28px 0 40px;
+    margin: 24px 0 32px; padding: 22px 26px;
+    background: rgba(12, 8, 6, 0.55); border: 4px dashed var(--plank-lo);
   }
-  .contact-card .label {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--ink-mute);
-    font-weight: 500;
-    margin-bottom: 4px;
-  }
-  .contact-card .email {
-    font-size: 22px;
-    font-weight: 500;
-    display: block;
-    color: var(--accent);
-    letter-spacing: -0.005em;
-    margin-bottom: 14px;
-  }
-  .contact-card .email:hover { color: var(--accent-hover); }
-  .contact-card .note {
-    margin: 0;
-    font-size: 15px;
-    color: var(--ink-mute);
-    line-height: 1.55;
-  }
+  .contact-card .label { color: var(--cream-mute); }
+  .contact-card .email { display: block; margin: 4px 0 12px; font-size: 24px; color: var(--fire-hot); }
+  .contact-card .note { margin: 0; color: var(--cream-mute); }
 
-  /* ─── FAQ — Apple Support style ─── */
-  details {
-    border-top: 1px solid var(--rule);
-    padding: 22px 0;
-  }
-  details:last-of-type {
-    border-bottom: 1px solid var(--rule);
-  }
-  details summary {
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--ink);
-    list-style: none;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 24px;
-    letter-spacing: -0.003em;
-    line-height: 1.4;
-  }
+  /* ─── 常见问题 ─── */
+  details { border-top: 4px solid var(--board-rim); padding: 18px 0; }
+  details:last-of-type { border-bottom: 4px solid var(--board-rim); }
+  details summary { cursor: pointer; list-style: none; display: flex; gap: 16px; color: var(--cream); }
   details summary::-webkit-details-marker { display: none; }
-  details summary::after {
-    content: "";
-    flex-shrink: 0;
-    width: 12px;
-    height: 12px;
-    margin-top: 6px;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'><path fill='none' stroke='%2386868b' stroke-width='1.6' stroke-linecap='round' d='M1 4l5 5 5-5'/></svg>");
-    background-repeat: no-repeat;
-    background-size: contain;
-    transition: transform 0.25s ease;
-  }
-  details[open] summary::after {
-    transform: rotate(180deg);
-  }
-  details summary:hover { color: var(--accent); }
-  details > p {
-    margin: 14px 0 0;
-    color: var(--ink-soft);
-    font-size: 16px;
-    line-height: 1.62;
-    padding-right: 36px;
-  }
-  details > p:last-child { margin-bottom: 0; }
+  details summary::before { content: "\25B8"; color: var(--fire); flex-shrink: 0; transition: transform 0.15s steps(2); }
+  details[open] summary::before { transform: rotate(90deg); }
+  details summary:hover { color: var(--fire-hot); }
+  details > p { margin: 12px 0 0; padding-left: 34px; }
 
-  /* ─── "Coming at launch" placeholder cards ─── */
-  .placeholder-card {
-    background: var(--paper);
-    border: 1px dashed var(--rule);
-    border-radius: 18px;
-    padding: 24px 28px;
-    margin: 0 0 16px;
-  }
-  .placeholder-card .ph-title {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--ink);
-    margin: 0 0 6px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .soon-pill {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--ink-mute);
-    border: 1px solid var(--rule);
-    border-radius: 980px;
-    padding: 3px 9px;
-    white-space: nowrap;
-  }
-  .placeholder-card p { margin: 0; font-size: 15px; color: var(--ink-mute); }
-
-  /* ─── Footer ─── */
-  footer {
-    text-align: center;
-    margin-top: 120px;
-    padding-top: 36px;
-    border-top: 1px solid var(--rule-soft);
-    color: var(--ink-mute);
-    font-size: 12px;
-    letter-spacing: 0;
-  }
-  footer .stack {
-    margin-top: 4px;
-    font-size: 11px;
-    color: var(--ink-mute);
-    opacity: 0.7;
-  }
-  footer .social {
-    margin-bottom: 14px;
-    font-size: 13px;
-    color: var(--ink-mute);
-  }
-  footer .social a {
-    color: var(--ink-soft);
-    font-weight: 500;
-  }
-  footer .social a:hover { color: var(--accent); }
-
-  /* ─── Responsive ─── */
-  /* ─── Press fact sheet / feature list ─── */
+  /* ─── 媒体资料 ─── */
   .pk-facts { width: 100%; border-collapse: collapse; margin: 6px 0 8px; }
-  .pk-facts td { padding: 10px 0; border-bottom: 1px solid var(--rule-soft);
-    vertical-align: top; font-size: 16px; }
+  .pk-facts td { padding: 10px 0; border-bottom: 3px solid var(--board-rim); vertical-align: top; }
   .pk-facts tr:last-child td { border-bottom: none; }
-  .pk-facts td.k { width: 38%; color: var(--ink-mute); padding-right: 16px; }
-  .pk-facts td.v { color: var(--ink); }
+  .pk-facts td.k { width: 34%; color: var(--cream-mute); padding-right: 16px; }
+  .pk-facts td.v { color: var(--cream); }
   ul.pk-feat { list-style: none; padding: 0; margin: 8px 0 0; }
-  ul.pk-feat li { position: relative; padding: 9px 0 9px 24px; color: var(--ink-soft);
-    border-bottom: 1px solid var(--rule-soft); font-size: 16px; }
+  ul.pk-feat li { position: relative; padding: 9px 0 9px 28px; color: var(--cream-soft); border-bottom: 3px solid var(--board-rim); }
   ul.pk-feat li:last-child { border-bottom: none; }
-  ul.pk-feat li::before { content: "\25B8"; position: absolute; left: 2px; color: var(--accent); }
+  ul.pk-feat li::before { content: "\25B8"; position: absolute; left: 2px; color: var(--fire); }
 
-  /* ─── Privacy policy lists / meta ─── */
-  .policy-meta { font-size: 14px; color: var(--ink-mute); margin: -16px 0 20px; }
-  ul.policy-list { margin: 0 0 16px; padding-left: 22px; }
-  ul.policy-list li { font-size: 17px; color: var(--ink-soft); line-height: 1.62;
-    margin: 0 0 8px; letter-spacing: -0.003em; }
-  body.lang-zh ul.policy-list li { letter-spacing: 0; }
+  /* ─── 隐私政策 ─── */
+  .policy-meta { color: var(--cream-mute); margin: -8px 0 20px; }
+  ul.policy-list { margin: 0 0 16px; padding-left: 26px; }
+  ul.policy-list li { color: var(--cream-soft); margin: 0 0 8px; }
+  ul.policy-list li::marker { color: var(--fire); }
   .summary-card ul.policy-list { margin: 6px 0 0; }
-  .summary-card ul.policy-list li { font-size: 16px; }
   .summary-card ul.policy-list li:last-child { margin-bottom: 0; }
 
-  @media (max-width: 640px) {
-    .container { padding: 72px 22px 80px; }
-    h1 { font-size: 40px; }
-    header .tagline { font-size: 18px; }
-    h2 { font-size: 26px; margin-bottom: 20px; }
-    h3 { font-size: 18px; }
-    p { font-size: 16px; }
-    section { margin-top: 64px; }
-    details summary { font-size: 16px; }
-    details > p { font-size: 15px; padding-right: 24px; }
-    .contact-card { padding: 22px 24px; border-radius: 14px; }
-    .contact-card .email { font-size: 19px; }
-    .lang-toggle { top: 16px; right: 16px; }
-    .lang-toggle button { padding: 5px 13px; font-size: 12px; }
-    .pk-facts td.k { width: 44%; }
-    ul.policy-list li { font-size: 16px; }
+  /* ─── 页脚：篝火 ─── */
+  footer { text-align: center; margin-top: 72px; color: var(--cream-mute); }
+  .campfire { display: flex; align-items: flex-end; justify-content: center; gap: 18px; height: 120px; margin-bottom: 22px; }
+  .campfire .log { width: 54px; height: 27px; background: url('/assets/log.png') 0 0 / 54px 27px; }
+  .campfire .fire { position: relative; width: 96px; height: 60px; background: url('/assets/campfire.png') 0 0 / 96px 60px; }
+  .campfire .flame {
+    position: absolute; left: 18px; bottom: 21px; width: 60px; height: 78px;
+    background: url('/assets/flame.png') 0 0 / 360px 78px;
+    animation: flame 0.9s steps(6) infinite;
   }
+  @keyframes flame { to { background-position: -360px 0; } }
+  footer .social { margin-bottom: 14px; }
+  footer .social a { margin: 0 4px; }
+  footer .stack { margin-top: 6px; font-size: 16px; color: var(--cream-mute); opacity: 0.8; }
+
+  /* ─── 院子：两侧草地 + 栅栏脚下的植被和家园物件（摆放见页面底部 yard 脚本） ─── */
+  .container { position: relative; z-index: 1; }
+  .fence { position: relative; }
+  .yard { position: absolute; left: 0; top: 0; width: 100%; height: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+  .yard, .fence-deco { filter: brightness(0.82) saturate(0.92); }      /* 跟压暗的夜色草地一个亮度 */
+  .fence-deco { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+  .yi { position: absolute; pointer-events: auto; transform-origin: 50% 100%; }
+  .yi > i { position: absolute; inset: 0; background-repeat: no-repeat; image-rendering: pixelated; }
+  .yi.tap { cursor: pointer; }
+  @keyframes ysheet { from { background-position: 0 0; } to { background-position: var(--sw) 0; } }
+  @keyframes yrustle { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(-4deg); } 75% { transform: rotate(4deg); } }
+  @keyframes yhop { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-14px); } 70% { transform: translateY(-4px); } }
+  @keyframes ybop { 50% { transform: translateY(-3px); } }
+  @keyframes yspin { to { transform: rotate(360deg); } }
+  @keyframes yfloat { from { transform: translateY(0); opacity: 1; } to { transform: translateY(-42px); opacity: 0; } }
+  .yi.rustle { animation: yrustle 0.36s steps(4); }
+  .yi.swingbag { animation: yrustle 0.5s steps(4) 2; }
+  .yi.hop { animation: yhop 0.42s steps(6); }
+  .yi.bop { animation: ybop 0.3s steps(2) infinite; }
+  .yi.spin > i { animation: yspin 0.5s steps(4) 2; }
+  .yfx { position: absolute; z-index: 99999; pointer-events: none; background-repeat: no-repeat; image-rendering: pixelated;
+    animation: yfloat 1.1s steps(11) forwards; }
+  .yfx.zz { font: 18px/1 var(--font); color: var(--cream); text-shadow: 2px 2px 0 var(--outline); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .lights, .campfire .flame { animation: none; }
+    .yi, .yi > i, .yfx { animation: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  @media (max-width: 720px) {
+    html { font-size: 16px; scroll-padding-top: 120px; }
+    .topbar { flex-wrap: wrap; gap: 8px 16px; padding: 10px 16px; }
+    .brand { font-size: 20px; }
+    .navlinks { order: 3; flex-basis: 100%; gap: 16px; }
+    .lights { top: 96px; height: 24px; background-size: 192px 24px; }
+    @keyframes twinkle { 50% { background-position: -96px 0; } }
+    .lang-toggle { margin-left: auto; }
+    .lang-toggle button { font-size: 16px; padding: 4px 10px; }
+    .container { padding: 20px 16px 40px; }
+    header .tagline { font-size: 20px; margin-top: 28px; }
+    .btn { padding: 10px 16px; }
+    section { padding: 40px 18px 24px; margin-top: 52px; }
+    h2 { font-size: 20px; margin-top: -66px; }
+    h3 { font-size: 18px; }
+    .contact-card { padding: 16px 18px; }
+    .contact-card .email { font-size: 20px; }
+    details > p { padding-left: 0; }
+    .pk-facts td.k { width: 40%; }
+    .gallery { grid-template-columns: 1fr 1fr; gap: 10px; }
+  }
+
 </style>
 </head>
 <body class="lang-en">
 
-<div class="lang-toggle" role="group" aria-label="Language selector">
-  <button type="button" data-lang="en" class="active" aria-label="English">EN</button>
-  <button type="button" data-lang="zh" aria-label="简体中文">中文</button>
-</div>
+<div class="yard" aria-hidden="true"></div>
+
+<nav class="topbar">
+  <a class="brand" href="#top">Z SQUAD</a>
+  <div class="navlinks">
+    <a href="#media"><span class="lang-en">Media</span><span class="lang-zh">影像</span></a>
+    <a href="#support"><span class="lang-en">Support</span><span class="lang-zh">支持</span></a>
+    <a href="#press"><span class="lang-en">Press</span><span class="lang-zh">媒体</span></a>
+    <a href="#privacy"><span class="lang-en">Privacy</span><span class="lang-zh">隐私</span></a>
+  </div>
+  <div class="lang-toggle" role="group" aria-label="Language selector">
+    <button type="button" data-lang="en" class="active" aria-label="English">EN</button>
+    <button type="button" data-lang="zh" aria-label="简体中文">中文</button>
+  </div>
+</nav>
+<div class="lights" aria-hidden="true"></div>
 
 <div class="container">
 
-<header>
-  <h1>Z Squad</h1>
-  <p class="tagline lang-en">Pixel Zombie Roguelike · Co-op</p>
-  <p class="tagline lang-zh">像素僵尸肉鸽跑酷 · 本地双人联机</p>
-  <p class="listed lang-en">Coming to the App Store on December 3</p>
-  <p class="listed lang-zh">12 月 3 日上架 App Store</p>
+<header id="top">
+  <h1 class="sr-only">Z Squad</h1>
+  <div class="hero-frame"><img class="hero" src="/assets/hero.png" width="1311" height="737" alt="Z Squad: the squad resting around a campfire at home while zombies crowd the fence"></div>
+  <p class="tagline lang-en">Build the squad. Outrun the horde. Find your way home.</p>
+  <p class="tagline lang-zh">组起小队，甩开尸潮，找到回家的路。</p>
+  <p class="listed lang-en">Free on iPhone &amp; iPad · Coming to the App Store on December 3, 2026</p>
+  <p class="listed lang-zh">iPhone 与 iPad 免费游玩 · 2026 年 12 月 3 日上架 App Store</p>
+  <div class="cta">
+    <a class="btn btn-fire" href="#media"><span class="lang-en">Watch the trailer</span><span class="lang-zh">看宣传片</span></a>
+    <a class="btn" href="#press"><span class="lang-en">Press kit</span><span class="lang-zh">媒体资料</span></a>
+    <a class="btn" href="#support"><span class="lang-en">Support</span><span class="lang-zh">玩家支持</span></a>
+  </div>
   <!-- ═══ 上架日 CHECKLIST（app 上线当天翻这几处）═══
        1. 上面两行 "Coming soon" → "Available on the App Store / 已上架 App Store"
        2. 解开下面的 App Store badge（官方黑色 badge 从
           https://developer.apple.com/app-store/marketing/tools/ 下载 SVG 放 repo 根，
           文件名 appstore-badge.svg；badge 不许改样式/裁边）
        3. About 段删 "TestFlight 公测中" 那句
-       4. Media 区两张占位卡换成真 trailer 嵌入 + 截图画廊（复用 ASC §3.4 截图 + §9 宣传片）
-       5. Press 区 factsheet/描述/卖点文本已就位（2026-07-23）；上架时只需补素材下载链接（截图 zip + logo zip + trailer mp4）
+       4. ✅ 2026-11-07 Media 区已换成 App Preview 视频 + 商店截图画廊（media/）；正式宣传片首映后可换成 YouTube 嵌入
+       5. Press 区 2026-11-07 已按推荐文案重写 + 截图 zip / 图标下载；还差 logo 素材包
        6. footer 社交链接解开（handle 抢注后）
        <head> 里的 Smart App Banner 不用动——上架后自动生效。 -->
   <!--
@@ -408,20 +360,33 @@
   <h2 class="lang-en">Media</h2>
   <h2 class="lang-zh">影像</h2>
 
-  <div class="placeholder-card">
-    <p class="ph-title"><span class="lang-en">Trailer</span><span class="lang-zh">宣传片</span> <span class="soon-pill lang-en">coming at launch</span><span class="soon-pill lang-zh">上架时上线</span></p>
-    <p class="lang-en">The launch trailer is finished and premieres soon on our <a href="https://youtube.com/@ZSquadGame">YouTube channel</a>.</p>
-    <p class="lang-zh">上架宣传片已完成，即将在我们的 <a href="https://youtube.com/@ZSquadGame">YouTube 频道</a>首映。</p>
+  <div class="video-frame">
+    <video controls playsinline preload="metadata" poster="/media/preview_poster.jpg" width="1280" height="590">
+      <source src="/media/preview.mp4" type="video/mp4">
+    </video>
   </div>
+  <p class="caption lang-en">30-second gameplay preview. The full launch trailer premieres soon on our <a href="https://youtube.com/@ZSquadGame">YouTube channel</a>.</p>
+  <p class="caption lang-zh">30 秒实机预览。完整上架宣传片即将在我们的 <a href="https://youtube.com/@ZSquadGame">YouTube 频道</a>首映。</p>
 
-  <div class="placeholder-card">
-    <p class="ph-title"><span class="lang-en">Screenshots</span><span class="lang-zh">游戏截图</span> <span class="soon-pill lang-en">coming at launch</span><span class="soon-pill lang-zh">上架时上线</span></p>
-    <p class="lang-en">An in-game gallery arrives with the App Store launch. Press can already <a href="#press-downloads">download the screenshots</a>.</p>
-    <p class="lang-zh">游戏截图画廊将随 App Store 上架放出；媒体现在就可以<a href="#press-downloads">下载截图</a>。</p>
+  <h3 class="lang-en">Screenshots</h3>
+  <h3 class="lang-zh">游戏截图</h3>
+  <div class="gallery">
+    <a href="/media/shots/01.jpg" class="shot"><img src="/media/shots/01_s.jpg" width="600" height="276" loading="lazy" alt="Z Squad screenshot 1"></a>
+    <a href="/media/shots/02.jpg" class="shot"><img src="/media/shots/02_s.jpg" width="600" height="276" loading="lazy" alt="Z Squad screenshot 2"></a>
+    <a href="/media/shots/03.jpg" class="shot"><img src="/media/shots/03_s.jpg" width="600" height="276" loading="lazy" alt="Z Squad screenshot 3"></a>
+    <a href="/media/shots/04.jpg" class="shot"><img src="/media/shots/04_s.jpg" width="600" height="276" loading="lazy" alt="Z Squad screenshot 4"></a>
+    <a href="/media/shots/05.jpg" class="shot"><img src="/media/shots/05_s.jpg" width="600" height="276" loading="lazy" alt="Z Squad screenshot 5"></a>
+    <a href="/media/shots/06.jpg" class="shot"><img src="/media/shots/06_s.jpg" width="600" height="276" loading="lazy" alt="Z Squad screenshot 6"></a>
+    <a href="/media/shots/07.jpg" class="shot"><img src="/media/shots/07_s.jpg" width="600" height="276" loading="lazy" alt="Z Squad screenshot 7"></a>
+    <a href="/media/shots/08.jpg" class="shot"><img src="/media/shots/08_s.jpg" width="600" height="276" loading="lazy" alt="Z Squad screenshot 8"></a>
+    <a href="/media/shots/09.jpg" class="shot"><img src="/media/shots/09_s.jpg" width="600" height="276" loading="lazy" alt="Z Squad screenshot 9"></a>
   </div>
+  <p class="caption lang-en">Tap a screenshot to see it full size. Press can <a href="#press-downloads">download all of them</a>.</p>
+  <p class="caption lang-zh">点截图看大图。媒体可以<a href="#press-downloads">打包下载</a>。</p>
 </section>
 
 <!-- ═══════════════ SUPPORT ═══════════════ -->
+<div class="fence" aria-hidden="true"></div>
 <section id="support">
   <h2 class="lang-en">Support</h2>
   <h2 class="lang-zh">玩家支持</h2>
@@ -580,6 +545,7 @@
        内购            → Services/TipJarService.swift（StoreKit 2 消耗型）
        联机设备名      → Network/NetworkManager.swift init（随机 "Z Squad ####"，不广播设备名）
        隐私清单        → PrivacyInfo.xcprivacy（必须与 ASC "App 隐私"问卷 + 本页一致） -->
+<div class="fence" aria-hidden="true"></div>
 <section id="privacy">
   <h2 class="lang-en">Privacy Policy</h2>
   <h2 class="lang-zh">隐私政策</h2>
@@ -728,6 +694,7 @@
 </section>
 
 <!-- ═══════════════ ABOUT ═══════════════ -->
+<div class="fence" aria-hidden="true"></div>
 <section id="about">
   <h2 class="lang-en">About</h2>
   <h2 class="lang-zh">关于</h2>
@@ -738,6 +705,7 @@
 </section>
 
 <!-- ═══════════════ PRESS ═══════════════ -->
+<div class="fence" aria-hidden="true"></div>
 <section id="press">
   <h2 class="lang-en">Press</h2>
   <h2 class="lang-zh">媒体</h2>
@@ -809,10 +777,17 @@
 </section>
 
 <footer>
+  <div class="campfire" aria-hidden="true">
+    <span class="log log-l"></span>
+    <span class="fire"><span class="flame"></span></span>
+    <span class="log log-r"></span>
+  </div>
   <div class="social">
     <a href="https://x.com/ZSquadGame">X</a> · <a href="https://youtube.com/@ZSquadGame">YouTube</a> · <a href="https://discord.gg/TrDh6J98m">Discord</a> · <a href="https://reddit.com/user/ZSquadGame">Reddit</a>
   </div>
   <div>© 2026 Yidong Li · Z Squad</div>
+  <div class="stack lang-en">Pixel art includes licensed third-party assets. Full credits are in the game (Settings → Credits). Font: Fusion Pixel (SIL OFL).</div>
+  <div class="stack lang-zh">像素美术含授权的第三方素材，完整署名见游戏内「设置 → 制作名单」。字体：Fusion Pixel（SIL OFL）。</div>
   <div class="stack">Last updated: 2026-11-07</div>
 </footer>
 
@@ -828,22 +803,266 @@
     buttons.forEach(function(b) {
       b.classList.toggle('active', b.getAttribute('data-lang') === lang);
     });
-    try { localStorage.setItem('squadz_lang', lang); } catch(e) {}
+    try { localStorage.setItem('zsquad_lang', lang); } catch(e) {}
+    window.dispatchEvent(new Event('zs-relayout'));   // 中英文页高不同，院子重摆
   }
-  // Initial language: saved preference > browser language > English
+  // 2026-11-07 用户：一进来永远先显示英文，切过中文才记住（换了新 key，旧访客的记录不算）
   var initial = 'en';
   try {
-    var saved = localStorage.getItem('squadz_lang');
-    if (saved === 'zh' || saved === 'en') {
-      initial = saved;
-    } else if ((navigator.language || '').toLowerCase().indexOf('zh') === 0) {
-      initial = 'zh';
-    }
+    var saved = localStorage.getItem('zsquad_lang');
+    if (saved === 'zh' || saved === 'en') initial = saved;
   } catch(e) {}
   setLang(initial);
   buttons.forEach(function(b) {
     b.addEventListener('click', function() { setLang(b.getAttribute('data-lang')); });
   });
+  // 截图灯箱
+  var box = document.createElement('div');
+  box.className = 'lightbox'; box.innerHTML = '<img alt="">';
+  document.body.appendChild(box);
+  box.addEventListener('click', function() { box.classList.remove('open'); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') box.classList.remove('open'); });
+  document.querySelectorAll('.gallery a.shot').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      box.querySelector('img').src = a.getAttribute('href');
+      box.classList.add('open');
+    });
+  });
+})();
+
+/* ─── 院子：家园里的植被和物件，宽屏铺在两侧草地，任何宽度都在栅栏脚下点缀。
+   固定种子 → 每次打开摆法一样；页面高度 / 宽度 / 语言变了就重摆。
+   贴图全是游戏里的原图（assets/yard/，从 HiZombie Resources/Sprites 复制）。 ─── */
+(function() {
+  var A = '/assets/yard/';
+  // key: [文件名, 整张宽, 高, 帧数, 待机动画秒数(0=不动)]
+  var S = {
+    bush1: ['Bush_1_Green', 15, 13, 1], bush2: ['Bush_2_Green', 28, 13, 1],
+    grass1: ['Grass_1_Green', 7, 5, 1], grass2: ['Grass_2_Green', 12, 10, 1],
+    grass3: ['Grass_3_Green', 16, 15, 1], grass4: ['Grass_4_Green', 16, 11, 1],
+    flowerP: ['Flowers_1_purple', 14, 12, 1], flowerB: ['Flowers_2_blue', 16, 14, 1],
+    flowerY: ['Flowers_2_yellow', 16, 14, 1], flowerR: ['Flowers_3_red', 9, 9, 1],
+    shroom: ['Mushrooms_2_Red', 10, 8, 1], stump: ['Stump_2_Mushrooms', 15, 12, 1],
+    oak: ['Tree_9_Small-oak_Green', 39, 45, 1], oak2: ['Tree_10_Small-oak_Green', 24, 36, 1],
+    pine: ['Tree_3_Normal_Green', 21, 30, 1], fruit: ['Yard_FruitTree_Fruit', 36, 42, 1],
+    goal: ['Yard_Goal', 34, 22, 1], ball: ['Yard_Ball', 10, 10, 1],
+    dog: ['Yard_Dog_side_sit-Sheet2', 28, 11, 2, 1.4], cat: ['Yard_Cat_side_sleep-Sheet2', 30, 11, 2, 2.4],
+    chicken: ['Yard_Chicken_side_peck-Sheet2', 22, 10, 2, 0.9], bird: ['Yard_Bird_side_peck-Sheet2', 18, 8, 2, 0.8],
+    bed: ['Yard_GardenBed', 36, 22, 1], tomato: ['Yard_Crop_Tomato_Growing', 14, 18, 1],
+    corn: ['Yard_Crop_Corn_Growing', 14, 22, 1], pumpkin: ['Yard_Crop_Pumpkin_Growing', 16, 14, 1],
+    coop: ['Yard_Coop', 28, 26, 1], well: ['Yard_Well', 24, 28, 1], bench: ['Yard_Bench', 26, 14, 1],
+    radio: ['Yard_Radio', 18, 20, 1], logseat: ['Yard_LogSeat', 18, 9, 1],
+    swing: ['Yard_Swing-Sheet4', 120, 28, 4, 0], punch: ['Yard_PunchBag', 10, 18, 1],
+    campfire: ['Yard_Campfire', 24, 15, 1], flame: ['Yard_Campfire_Flame-Sheet6', 84, 18, 6, 0.6]
+  };
+  // 坐着的人 = 游戏里的随从服装（原创角色；像知名作品的几个不放）。每人全页只出现一次，座位多于人就空着。
+  var PEOPLE_SMALL = ['Assault', 'Sniper', 'Medic', 'Comms', 'Demo', 'PeaceElite', 'Air-Drone', 'Hanc'];
+  var PEOPLE_BIG = ['Zombie-Scavenger', 'Ganki', 'FlameOn', 'SpaceHunter', 'Dark', 'Grenader', 'Sword', 'Boss', 'Enjineer', 'Trader', 'Commander'];
+  PEOPLE_SMALL.concat(PEOPLE_BIG).forEach(function(n) {
+    var big = PEOPLE_BIG.indexOf(n) >= 0, w = big ? 26 : 14, h = big ? 32 : 20;
+    S['p_' + n + '_r'] = ['P_' + n + '_side', w * 6, h, 6, 0.9];
+    S['p_' + n + '_l'] = ['P_' + n + '_side_left', w * 6, h, 6, 0.9];
+  });
+  // 一组小场景：[key, x, y(顶边), 左右翻]，单位 = 原图像素。
+  // ['seat', 中心x, 座位底边y, 朝左] = 坐一个人：照游戏，人的中心比座位底边高 10px、画在座位前面。
+  var VIGNETTES = [
+    [['goal', 0, 0], ['ball', 6, 27], ['dog', 22, 25]],
+    [['logseat', 0, 18], ['seat', 9, 27], ['campfire', 21, 12], ['flame', 26, -4], ['logseat', 47, 18], ['seat', 56, 27, 1]],
+    [['bed', 0, 8], ['corn', 2, -4], ['tomato', 12, 2], ['pumpkin', 22, 10]],
+    [['bench', 0, 6], ['seat', 6, 20], ['seat', 20, 20, 1]],
+    [['coop', 0, 0], ['chicken', 27, 18], ['chicken', 9, 28, 1]],
+    [['logseat', 0, 10], ['seat', 9, 19], ['bush1', 21, 8]],
+    [['fruit', 0, 0], ['shroom', 30, 36]],
+    [['logseat', 0, 14], ['seat', 9, 23], ['radio', 20, 3]],
+    [['swing', 0, 0]],
+    [['well', 0, 0], ['bird', 28, 20]],
+    [['bench', 0, 6], ['seat', 7, 20], ['cat', 11, 0]],
+    [['punch', 2, 0], ['stump', 14, 8]],
+    [['oak', 0, 0]],
+    [['pine', 4, 0], ['bush2', 0, 23]],
+    [['oak2', 0, 0], ['bush1', 18, 25]]
+  ];
+  var FILLERS = ['grass1', 'grass2', 'grass3', 'grass4', 'grass3', 'grass4', 'flowerP', 'flowerB', 'flowerY', 'flowerR', 'shroom', 'bush1'];
+  var STEP = { grass3: 'Grass_3_Stepping-On-Animation_Green-Sheet2', grass4: 'Grass_4_Stepping-On-Animation_Green-Sheet2' };
+  var VEG = /^(bush|grass|flower|shroom|stump|oak|pine|fruit)/;
+
+  function rng(seed) { return function() { seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+    var t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+  function fw(k) { return S[k][1] / S[k][3]; }
+
+  function fx(parent, x, y, s, kind) {
+    var e = document.createElement('div'); e.className = 'yfx';
+    if (kind === 'z' || kind === 'hi') { e.className += ' zz'; e.textContent = kind === 'z' ? 'z' : 'Hi!'; }
+    else {
+      var f = kind === 'heart' ? ['Heart_Small_Full', 11, 10] : ['Yard_MusicNote', 7, 9];
+      e.style.width = f[1] * s + 'px'; e.style.height = f[2] * s + 'px';
+      e.style.backgroundImage = 'url(' + A + f[0] + '.png)'; e.style.backgroundSize = '100% 100%';
+    }
+    e.style.left = x + 'px'; e.style.top = y + 'px';
+    parent.appendChild(e); setTimeout(function() { e.remove(); }, 1200);
+  }
+  function once(o, cls, ms) { o.classList.remove(cls); void o.offsetWidth; o.classList.add(cls);
+    clearTimeout(o._t); o._t = setTimeout(function() { o.classList.remove(cls); }, ms); }
+  function setSheet(i, k, s, play) {
+    var d = S[k]; i.style.backgroundImage = 'url(' + A + d[0] + '.png)';
+    i.style.backgroundSize = d[1] * s + 'px ' + d[2] * s + 'px';
+    i.style.setProperty('--sw', -d[1] * s + 'px');
+    i.style.animation = play ? 'ysheet ' + play + 's steps(' + d[3] + ') infinite' : 'none';
+    i.style.backgroundPosition = '0 0';
+  }
+
+  function sprite(parent, k, x, y, s, flip, bounds) {
+    var d = S[k], w = fw(k) * s, h = d[2] * s;
+    var o = document.createElement('div'); o.className = 'yi';
+    var z = Math.round(y + h) + (k === 'flame' ? 60 : 0);        // 火苗画在火堆上
+    o.style.cssText = 'left:' + x + 'px;top:' + y + 'px;width:' + w + 'px;height:' + h + 'px;z-index:' + z;
+    var i = document.createElement('i'); o.appendChild(i);
+    setSheet(i, k, s, d[3] > 1 ? d[4] : 0);
+    if (k.indexOf('p_') === 0) i.style.animationDelay = -(Math.random() * 0.9).toFixed(2) + 's';   // 各人呼吸不同步
+    if (flip) i.style.transform = 'scaleX(-1)';
+    parent.appendChild(o);
+
+    var cx = function() { return o.offsetLeft + w / 2; };
+    if (VEG.test(k)) {                                   // 植被：路过晃一下，草丛被踩弯
+      o.addEventListener('mouseenter', function() {
+        if (STEP[k]) {
+          i.style.backgroundImage = 'url(' + A + STEP[k] + '.png)';
+          i.style.backgroundSize = 2 * fw(k) * s + 'px ' + h + 'px';
+          i.style.backgroundPosition = -fw(k) * s + 'px 0';
+          clearTimeout(o._g); o._g = setTimeout(function() { setSheet(i, k, s, 0); }, 260);
+        } else once(o, 'rustle', 380);
+      });
+      if (/oak|pine|fruit/.test(k)) { o.classList.add('tap'); o.addEventListener('click', function() { once(o, 'rustle', 380); }); }
+      return o;
+    }
+    var act = {
+      dog: function() { once(o, 'hop', 450); fx(parent, cx() - 11, o.offsetTop - 30, 2, 'heart'); },
+      chicken: function() { once(o, 'hop', 450); },
+      cat: function() { fx(parent, cx() + 4, o.offsetTop - 18, s, 'z'); },
+      punch: function() { once(o, 'swingbag', 1000); },
+      swing: function() { setSheet(i, k, s, 0.9); clearTimeout(o._g);
+        o._g = setTimeout(function() { setSheet(i, k, s, 0); }, 2700); },
+      radio: function() {
+        if (o._on) { clearInterval(o._on); o._on = 0; o.classList.remove('bop'); return; }
+        o.classList.add('bop');
+        var note = function() { fx(parent, cx() - 10 + Math.random() * 14, o.offsetTop - 24, 2, 'note'); };
+        note(); o._on = setInterval(note, 650);
+      },
+      ball: function() {
+        var cur = o._dx || 0, left = o.offsetLeft;
+        var lo = bounds[0] - left, hi = bounds[1] - left - w;
+        var next = cur + (Math.random() < 0.5 ? -1 : 1) * (30 + Math.random() * 70);
+        if (next < lo || next > hi) next = cur - (next - cur);
+        next = Math.max(lo, Math.min(hi, next)); o._dx = next;
+        o.style.transition = 'transform 0.9s cubic-bezier(.2,.8,.3,1)';
+        o.style.transform = 'translateX(' + Math.round(next) + 'px)';
+        once(o, 'spin', 1000);
+      },
+      bird: function() {
+        if (o._away) return; o._away = 1;
+        i.style.backgroundImage = 'url(' + A + 'Yard_Bird_side_fly-Sheet2.png)';
+        i.style.animation = 'ysheet 0.25s steps(2) infinite';
+        var dir = Math.random() < 0.5 ? -1 : 1;
+        i.style.transform = dir < 0 ? 'scaleX(-1)' : '';
+        o.style.transition = 'transform 1.2s linear, opacity 1.2s steps(6)';
+        o.style.transform = 'translate(' + dir * 90 + 'px,-110px)'; o.style.opacity = '0';
+        setTimeout(function() {
+          o.style.transition = 'opacity 0.6s steps(4)'; o.style.transform = '';
+          setSheet(i, k, s, S.bird[4]); i.style.transform = flip ? 'scaleX(-1)' : '';
+          o.style.opacity = '1'; o._away = 0;
+        }, 5000);
+      }
+    }[k];
+    if (k.indexOf('p_') === 0) act = function() { once(o, 'hop', 450); fx(parent, cx() - 14, o.offsetTop - 22, s, 'hi'); };
+    if (act) { o.classList.add('tap'); o.addEventListener('click', act); }
+    return o;
+  }
+
+  var yard = document.querySelector('.yard');
+  var lastKey = '';
+  function layout() {
+    var vw = document.documentElement.clientWidth;
+    var docH = document.documentElement.scrollHeight;
+    var key = vw + 'x' + docH; if (key === lastKey) return; lastKey = key;
+    yard.innerHTML = ''; yard.style.height = docH + 'px';
+    document.querySelectorAll('.fence-deco').forEach(function(e) { e.remove(); });
+
+    // ── 栅栏脚下：任何宽度都有（手机上就靠它）
+    var critters = ['chicken', 'cat', 'dog', 'bird'];
+    document.querySelectorAll('.fence').forEach(function(fence, fi) {
+      var r = rng(900 + fi), layer = document.createElement('div');
+      layer.className = 'fence-deco'; fence.appendChild(layer);
+      var fwid = fence.clientWidth, s = 3;
+      for (var x = 8 + r() * 60; x < fwid - 40; x += 70 + r() * 110) {
+        var k = FILLERS[Math.floor(r() * FILLERS.length)];
+        sprite(layer, k, Math.round(x), 48 - S[k][2] * s + 6, s, r() < 0.5, [0, fwid]);
+      }
+      var c = critters[fi % critters.length], cxp = Math.round(fwid * (0.12 + r() * 0.76));
+      sprite(layer, c, cxp, 48 - S[c][2] * s + 4, s, r() < 0.5, [0, fwid]);
+    });
+
+    // ── 两侧草地：只有宽屏有空地
+    var sec = document.querySelector('section');
+    if (!sec) return;
+    var sr = sec.getBoundingClientRect();
+    var gutter = sr.left - 18;
+    var s = gutter >= 150 ? 3 : gutter >= 100 ? 2 : 0;
+    if (!s) return;
+    var sy = window.scrollY;
+    var blocked = [];                                   // 栅栏横条盖在院子上面，避开它们
+    document.querySelectorAll('.fence').forEach(function(f) {
+      var b = f.getBoundingClientRect(); blocked.push([b.top + sy - 30, b.bottom + sy + 10]);
+    });
+    var sides = [[10, sr.left - 14], [sr.right + 14, vw - 10]];
+    var order = VIGNETTES.map(function(v, n) { return n; }), r0 = rng(31);
+    for (var n = order.length - 1; n > 0; n--) { var j = Math.floor(r0() * (n + 1)); var t = order[n]; order[n] = order[j]; order[j] = t; }
+    // 人：固定种子打乱一次，左边取单数位、右边取双数位 → 全页每人最多一次
+    var people = PEOPLE_SMALL.concat(PEOPLE_BIG), rp = rng(77);
+    for (var m = people.length - 1; m > 0; m--) { var j2 = Math.floor(rp() * (m + 1)); var t2 = people[m]; people[m] = people[j2]; people[j2] = t2; }
+    var pools = [people.filter(function(p, n) { return n % 2 === 0; }), people.filter(function(p, n) { return n % 2 === 1; })];
+    sides.forEach(function(side, si) {
+      var r = rng(31 + si * 7), pool = pools[si];
+      if (si) order = order.slice().reverse();           // 右边反着取，两边不会在同一高度撞同一组
+      var vi = 0, y = 150 + si * 170 + r() * 80;
+      while (y < docH - 240) {
+        var v = VIGNETTES[order[vi % order.length]], used = 0, items = [];
+        v.forEach(function(it) {                         // 座位换成具体的人；人用完了座位就空着
+          if (it[0] !== 'seat') { items.push(it); return; }
+          var who = pool[used]; if (!who) return; used++;
+          var k = 'p_' + who + (it[3] ? '_l' : '_r');
+          items.push([k, it[1] - fw(k) / 2, it[2] - 10 - S[k][2] / 2]);
+        });
+        var minX = 0, vw0 = 0, vh0 = 0, top0 = 0;
+        items.forEach(function(it) { minX = Math.min(minX, it[1]); vw0 = Math.max(vw0, it[1] + fw(it[0])); vh0 = Math.max(vh0, it[2] + S[it[0]][2]); top0 = Math.min(top0, it[2]); });
+        var w = (vw0 - minX) * s, h = (vh0 - top0) * s, room = side[1] - side[0];
+        var hit = blocked.some(function(b) { return y + h > b[0] && y < b[1]; });
+        if (hit) { y += 90; continue; }
+        var x0 = -9999;
+        if (w <= room) {
+          x0 = side[0] + r() * (room - w);
+          items.forEach(function(it) { sprite(yard, it[0], Math.round(x0 + (it[1] - minX) * s), Math.round(y + (it[2] - top0) * s), s, it[3], side); });
+          pool.splice(0, used);
+          vi++;
+        }
+        var fillers = 5 + Math.floor(r() * 4);           // 场景周围和下方空地撒草和花
+        for (var q = 0; q < fillers; q++) {
+          var k = FILLERS[Math.floor(r() * FILLERS.length)], kw = fw(k) * s;
+          var fy = y - 30 + r() * (h + 260), fx0 = side[0] + r() * Math.max(0, room - kw), kh = S[k][2] * s;
+          if (blocked.some(function(b) { return fy + 40 > b[0] && fy < b[1]; })) continue;
+          if (fx0 < x0 + w + 4 && fx0 + kw > x0 - 4 && fy < y + h + 4 && fy + kh > y - 4) continue;   // 不长到场景物件上
+          sprite(yard, k, Math.round(fx0), Math.round(fy), s, r() < 0.5, side);
+        }
+        y += h + 140 + r() * 140;
+      }
+    });
+  }
+  var rt; function soon() { clearTimeout(rt); rt = setTimeout(layout, 150); }
+  window.addEventListener('resize', soon);
+  window.addEventListener('zs-relayout', soon);
+  window.addEventListener('load', layout);
+  layout();
 })();
 </script>
 
